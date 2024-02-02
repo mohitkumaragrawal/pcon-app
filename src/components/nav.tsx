@@ -9,18 +9,28 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Button,
 } from "@nextui-org/react";
 
 import logo from "../assets/pcon-transparent.png";
 import useOffsetTop from "../hooks/useOffsetTop";
 
 import { useState } from "react";
+import Link from "next/link";
+
+import { signIn, useSession } from "next-auth/react";
+
+import { FcGoogle } from "react-icons/fc";
+import Profile from "./profile";
 
 function NavLink({ children, link }) {
   return (
-    <p className="text-lg uppercase font-bold cursor-pointer transition-all nav-link">
+    <Link
+      className="text-lg uppercase font-bold cursor-pointer transition-all nav-link"
+      href={link}
+    >
       {children}
-    </p>
+    </Link>
   );
 }
 
@@ -28,10 +38,6 @@ const menuItems = [
   {
     name: "Home",
     link: "/",
-  },
-  {
-    name: "About Us",
-    link: "/about",
   },
   {
     name: "Our Team",
@@ -54,6 +60,8 @@ const menuItems = [
 export default function Nav() {
   const scrolled = useOffsetTop(50);
 
+  const [loading, setLoading] = useState(false);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrolledGradient =
@@ -61,6 +69,10 @@ export default function Nav() {
 
   const unscrolledGradient =
     "linear-gradient(180deg, rgba(0,0,10, 0.5) 0%, rgba(0,0,0,0) 100%)";
+
+  const session = useSession();
+
+  // const status = session && session.user ? "authenticated" : "unauthenticated";
 
   return (
     <Navbar
@@ -105,8 +117,11 @@ export default function Nav() {
             <NavLink link={item.link}>{item.name}</NavLink>
           </NavbarItem>
         ))}
+        <NavbarItem className="gap-10 hidden md:flex">
+          <Profile session={session.data} status={session.status} />
+        </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="backdrop-filter-none py-10">
+      <NavbarMenu className="py-10 overflow-hidden">
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <NavLink link={item.link}>{item.name}</NavLink>
