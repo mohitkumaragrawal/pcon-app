@@ -12,6 +12,5 @@ export default async function ProfileLayout({
   if (!session) {
     return redirect("/");
   }
-
-  return <> {children}</>;
+  return <>{children}</>;
 }

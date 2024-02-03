@@ -14,6 +14,14 @@ import {
 } from "./ui/form";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import { Spinner } from "@nextui-org/react";
+import { toast } from "sonner";
+
+import MyMarkdown from "./my-markdown";
+
+import { useRouter } from "next/navigation";
+import { Input } from "./ui/input";
 
 const blogSchema = z.object({
   title: z.string().min(3, {
@@ -22,11 +30,20 @@ const blogSchema = z.object({
   content: z.string().min(10, {
     message: "Content must be at least 10 characters long",
   }),
+  tags: z.string().optional(),
 });
 
 export type Blog = z.infer<typeof blogSchema>;
 
-export default function CreateBlogForm({ action }) {
+interface Props {
+  action: (blog: Blog) => Promise<any>;
+  redirect: string;
+}
+
+export default function CreateBlogForm({
+  action,
+  redirect: redirectURL,
+}: Props) {
   const form = useForm<Blog>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
@@ -35,8 +52,27 @@ export default function CreateBlogForm({ action }) {
     },
   });
 
-  const onSubmit = (value: Blog) => {
-    action(value);
+  const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(false);
+
+  const router = useRouter();
+
+  const onSubmit = async (value: Blog) => {
+    const promise = action(value);
+    setLoading(true);
+
+    toast.promise(promise, {
+      loading: "Creating blog...",
+      success: "Blog created successfully.",
+      error: "Error creating blog. Please try again.",
+    });
+
+    const result = await promise;
+    if (!result.error) {
+      form.reset();
+      router.push(redirectURL);
+    }
+    setLoading(false);
   };
 
   return (
@@ -54,7 +90,7 @@ export default function CreateBlogForm({ action }) {
               <FormControl>
                 <Textarea
                   placeholder="Title"
-                  className="text-lg py-4 px-4"
+                  className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
                   rows={1}
                   {...field}
                 />
@@ -68,20 +104,62 @@ export default function CreateBlogForm({ action }) {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Content</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Content goes here..."
-                  className="text-lg py-4 px-4"
-                  rows={6}
-                  {...field}
-                />
-              </FormControl>
+              <FormLabel className="text-lg flex justify-between">
+                Content
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setPreview((p) => !p)}
+                >
+                  {preview ? "Hide Preview" : "Show Preview"}
+                </Button>
+              </FormLabel>
+              {preview && (
+                <MyMarkdown className="text-lg border-2 rounded-md p-3 backdrop-blur-sm">
+                  {field.value}
+                </MyMarkdown>
+              )}
+              {!preview && (
+                <FormControl>
+                  <Textarea
+                    placeholder="Content goes here..."
+                    className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
+                    rows={6}
+                    {...field}
+                  />
+                </FormControl>
+              )}
+              <FormDescription>
+                Write a blog post that is at least 10 characters long.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" variant="secondary">
+
+        <FormField
+          control={form.control}
+          name="tags"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-lg">Tags</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Tag goes here..."
+                  className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                Add tags to your blog post. Separate tags with spaces.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" variant="secondary" disabled={loading}>
+          {loading && <Spinner className="mr-3" />}
           Create Blog
         </Button>
       </form>

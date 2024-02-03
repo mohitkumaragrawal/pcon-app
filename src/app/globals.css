@@ -178,3 +178,65 @@
       -0.04em -0.025em 0 #fffc005b;
   }
 }
+
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply my-5;
+}
+
+.markdown h1 {
+  @apply text-5xl font-bold text-cyan-400;
+}
+
+.markdown h2 {
+  @apply text-4xl font-bold text-cyan-400;
+}
+.markdown h3 {
+  @apply text-2xl font-bold text-cyan-400;
+}
+.markdown h4 {
+  @apply text-xl font-bold text-cyan-400;
+}
+.markdown h5 {
+  @apply text-lg font-bold text-cyan-400;
+}
+.markdown h6 {
+  @apply font-bold text-cyan-400;
+}
+
+.markdown blockquote {
+  @apply italic text-amber-300 text-lg border-l-4 border-amber-300 p-4 my-4;
+}
+
+.markdown a {
+  @apply text-cyan-400 underline;
+}
+
+.markdown table {
+  @apply w-full text-left;
+}
+
+.markdown table th {
+  @apply bg-cyan-900 text-white font-bold p-2;
+}
+
+.markdown table td {
+  @apply border p-2;
+}
+
+.markdown table tr:nth-child(2n) {
+  @apply bg-cyan-100/10;
+}
+
+.markdown pre {
+  @apply bg-slate-700/60 p-3 my-4 rounded-lg;
+}
+
+.markdown p {
+  @apply my-2 text-lg;
+}

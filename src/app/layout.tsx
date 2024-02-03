@@ -3,6 +3,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import TorchBackground from "@/components/torch-background";
 import Nav from "@/components/nav";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,6 +29,7 @@ export default function RootLayout({
           <Nav />
           {children}
         </Providers>
+        <Toaster />
       </body>
     </html>
   );

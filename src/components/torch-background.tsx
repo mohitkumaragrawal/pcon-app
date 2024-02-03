@@ -4,7 +4,9 @@ import useMousePosition from "../hooks/useMousePosition";
 import looperPattern from "@/assets/looper-pattern.svg";
 
 export default function TorchBackground() {
-  let { x, y } = useMousePosition();
+  // let { x, y } = useMousePosition();
+  let x: number = 0,
+    y: number = 0;
 
   if (x == null || y == null) {
     x = 0;
@@ -16,7 +18,7 @@ export default function TorchBackground() {
       <div
         className="fixed inset-0 transition-all -z-40"
         style={{
-          background: `radial-gradient(circle at 0px 0px, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,
+          background: `radial-gradient(circle at ${x}px ${y}px, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,
           filter: "blur(10px)",
         }}
       ></div>
