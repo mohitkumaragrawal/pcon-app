@@ -14,14 +14,14 @@ export default function TorchBackground() {
   return (
     <>
       <div
-        className="fixed inset-0 transition-all"
+        className="fixed inset-0 transition-all -z-40"
         style={{
-          background: `radial-gradient(circle at ${x}px ${y}px, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,
+          background: `radial-gradient(circle at 0px 0px, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,
           filter: "blur(10px)",
         }}
       ></div>
       <div
-        className="fixed inset-0 "
+        className="fixed inset-0 -z-30"
         style={{
           backgroundImage: `url(${looperPattern.src})`,
           backgroundPosition: "center",

@@ -43,6 +43,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Blog          Blog[]
 }
 
 model VerificationToken {
@@ -51,4 +52,25 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Blog {
+  id String @id @default(cuid())
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  title            String
+  shortDescription String?
+  content          String
+
+  BlogTag BlogTag[]
+}
+
+model BlogTag {
+  blog   Blog   @relation(fields: [blogId], references: [id])
+  blogId String
+  tag    String
+
+  @@unique([blogId, tag])
 }

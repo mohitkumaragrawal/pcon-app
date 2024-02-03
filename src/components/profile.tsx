@@ -61,7 +61,7 @@ export default function Profile({ session, status }: Props) {
           </Button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" className="bg-slate-900/30">
+        <DropdownMenuContent align="end">
           <DropdownMenuLabel className="p-5 flex gap-4">
             <img
               src={session?.user?.image ?? ""}
@@ -74,10 +74,10 @@ export default function Profile({ session, status }: Props) {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link href="/dashboard">
+          <Link href="/profile">
             <DropdownMenuItem>
               <LayoutDashboard className="mr-3" />
-              Dashboard
+              Profile
             </DropdownMenuItem>
           </Link>
           <DropdownMenuItem onClick={handleLogout}>

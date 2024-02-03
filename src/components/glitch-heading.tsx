@@ -1,4 +1,8 @@
-export default function GlitchHeading({ className, children }) {
+interface Props {
+  className?: string;
+  children?: React.ReactNode;
+}
+export default function GlitchHeading({ className, children }: Props) {
   return (
     <div className={className}>
       <p className="glitch">

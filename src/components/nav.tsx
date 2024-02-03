@@ -18,7 +18,7 @@ import useOffsetTop from "../hooks/useOffsetTop";
 import { useState } from "react";
 import Link from "next/link";
 
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
 import Profile from "./profile";
@@ -79,7 +79,7 @@ export default function Nav() {
       style={{
         background:
           scrolled || isMenuOpen ? scrolledGradient : unscrolledGradient,
-        backdropFilter: "none",
+        backdropFilter: isMenuOpen ? "blur(10px)" : "none",
       }}
       className="h-24 transition-all"
       isMenuOpen={isMenuOpen}
@@ -97,8 +97,10 @@ export default function Nav() {
       </NavbarContent>
 
       <NavbarContent className="md:hidden" justify="end">
+        <Profile session={session.data} status={session.status} />
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="ml-3"
         />
       </NavbarContent>
 
