@@ -22,6 +22,19 @@ export const authOptions: NextAuthOptions = {
     session: async ({ session, user }) => {
       if (session?.user) {
         session.user.id = user.id;
+
+        // get the user's roles
+        const userRoles = await prisma.userRoles.findMany({
+          select: {
+            role: true,
+          },
+          where: {
+            userId: user.id,
+          },
+          distinct: ["role"],
+        });
+
+        session.user.roles = userRoles.map((role) => role.role);
       }
       return session;
     },

@@ -14,14 +14,14 @@ import {
 } from "./ui/form";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/react";
 import { toast } from "sonner";
 
 import MyMarkdown from "./my-markdown";
 
 import { useRouter } from "next/navigation";
-import { Input } from "./ui/input";
+import BlogChipsEdit from "./blog/blog-chips-edit";
 
 const blogSchema = z.object({
   title: z.string().min(3, {
@@ -30,7 +30,7 @@ const blogSchema = z.object({
   content: z.string().min(10, {
     message: "Content must be at least 10 characters long",
   }),
-  tags: z.string().optional(),
+  tags: z.array(z.string()),
 });
 
 export type Blog = z.infer<typeof blogSchema>;
@@ -38,19 +38,43 @@ export type Blog = z.infer<typeof blogSchema>;
 interface Props {
   action: (blog: Blog) => Promise<any>;
   redirect: string;
+  defaultValue?: Blog;
+  toastData?: { loading: string; success: string; error: string };
+  actionName?: string;
 }
+
+const allowedChips = [
+  "event",
+  "annoucement",
+  "news",
+  "cp",
+  "web",
+  "android",
+  "ios",
+  "ml",
+  "tutorial",
+];
 
 export default function CreateBlogForm({
   action,
   redirect: redirectURL,
+  defaultValue,
+  toastData,
+  actionName,
 }: Props) {
   const form = useForm<Blog>({
     resolver: zodResolver(blogSchema),
-    defaultValues: {
+    defaultValues: defaultValue ?? {
       title: "",
       content: "",
+      tags: [],
     },
   });
+
+  useEffect(() => {
+    form.setValue("content", defaultValue?.content || "");
+    form.setValue("title", defaultValue?.title || "");
+  }, [defaultValue, form]);
 
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(false);
@@ -61,18 +85,20 @@ export default function CreateBlogForm({
     const promise = action(value);
     setLoading(true);
 
-    toast.promise(promise, {
-      loading: "Creating blog...",
-      success: "Blog created successfully.",
-      error: "Error creating blog. Please try again.",
-    });
+    toast.promise(
+      promise,
+      toastData ?? {
+        loading: "Creating blog...",
+        success: "Blog created successfully.",
+        error: "Error creating blog. Please try again.",
+      }
+    );
 
-    const result = await promise;
-    if (!result.error) {
-      form.reset();
-      router.push(redirectURL);
-    }
+    try {
+      const result = await promise;
+    } catch (error) {}
     setLoading(false);
+    router.push(redirectURL);
   };
 
   return (
@@ -142,25 +168,27 @@ export default function CreateBlogForm({
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg">Tags</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="Tag goes here..."
-                  className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
-                  {...field}
-                />
-              </FormControl>
+              <FormLabel className="text-lg flex justify-between">
+                Tags
+              </FormLabel>
+              <BlogChipsEdit
+                chips={field.value}
+                onChipsChange={(chips) => field.onChange(chips)}
+                allowedChips={allowedChips}
+              />
               <FormDescription>
-                Add tags to your blog post. Separate tags with spaces.
+                Add tags to your blog post to make it easier to find.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
+        {/* <BlogChipsEdit allowedChips={["react", "nextjs", "javascript"]} /> */}
+
         <Button type="submit" variant="secondary" disabled={loading}>
           {loading && <Spinner className="mr-3" />}
-          Create Blog
+          {actionName ?? "Create Blog"}
         </Button>
       </form>
     </Form>

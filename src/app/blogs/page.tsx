@@ -18,11 +18,10 @@ export default async function Blogs() {
       author: true,
       id: true,
       title: true,
+      BlogTag: true,
     },
     take: 20,
   });
-
-  const tags = ["event", "announcement", "news"];
 
   async function actionDeleteBlog(blogId: string) {
     "use server";

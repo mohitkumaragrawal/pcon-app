@@ -80,6 +80,14 @@ export default function Profile({ session, status }: Props) {
               Profile
             </DropdownMenuItem>
           </Link>
+          {session?.user?.roles?.includes("admin") && (
+            <Link href="/admin">
+              <DropdownMenuItem>
+                <LayoutDashboard className="mr-3" />
+                Admin
+              </DropdownMenuItem>
+            </Link>
+          )}
           <DropdownMenuItem onClick={handleLogout}>
             <LogOut className="mr-3" />
             Sign out

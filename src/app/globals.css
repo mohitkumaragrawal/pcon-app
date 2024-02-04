@@ -244,3 +244,31 @@
 .markdown p {
   @apply my-2 text-lg;
 }
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: darkcyan; /* Color of the scrollbar handle */
+  border-radius: 8px;
+  border: 1px solid slateblue;
+  /* box-shadow: 0 0 10px rgba(0, 255, 255, 0.8); Glow effect */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Make the track transparent */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: cyan; /* Change color on hover */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: dodgerblue; /* Change color when dragging */
+}
+
+::-webkit-scrollbar-thumb:focus {
+  background-color: deepskyblue; /* Change color on focus */
+}

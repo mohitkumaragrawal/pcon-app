@@ -8,30 +8,36 @@ import prisma from "@/lib/prisma";
 
 import type { Blog } from "@/components/create-blog-form";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export default async function CreateBlog() {
   const session = await getServerSession(authOptions);
 
   async function actionCreateBlog(blog: Blog): Promise<any> {
     "use server";
+
     try {
       await prisma.blog.create({
         data: {
           title: blog.title,
           content: blog.content,
           authorId: session.user.id,
+
+          BlogTag: {
+            createMany: {
+              data: blog.tags.map((tag) => {
+                return {
+                  tag,
+                };
+              }),
+            },
+          },
         },
       });
-
       revalidatePath("/blogs", "page");
-
-      return {
-        info: "Blog created successfully.",
-      };
+      return null;
     } catch (error) {
-      return {
-        error: "Error creating blog. Please try again.",
-      };
+      throw new Error("Error creating blog. Please try again.");
     }
   }
 

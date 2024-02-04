@@ -10,6 +10,10 @@ import { EditIcon } from "lucide-react";
 interface Blog {
   id: string;
   title: string;
+  BlogTag: {
+    blogId: string;
+    tag: string;
+  }[];
   author: {
     id: string;
     name: string;
@@ -42,14 +46,16 @@ export default function BlogCard({ blog, actionDeleteBlog }: BlogCardProps) {
               blogId={blog.id}
               deleteAction={actionDeleteBlog}
             />
-            <Button variant="secondary">
-              <EditIcon size={16} />
-            </Button>
+            <Link href={`/blogs/edit/${blog.id}`}>
+              <Button variant="secondary">
+                <EditIcon size={16} />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="flex justify-between items-center">
           <div className="flex gap-2">
-            {tags.map((tag) => (
+            {blog.BlogTag.map(({ tag }) => (
               <div
                 className="bg-cyan-200/60 px-2 py-1 rounded-full text-muted text-sm font-bold"
                 key={tag}
