@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 
 import type { Blog } from "@/components/create-blog-form";
+import { revalidatePath } from "next/cache";
 
 export default async function CreateBlog() {
   const session = await getServerSession(authOptions);
@@ -21,6 +22,8 @@ export default async function CreateBlog() {
           authorId: session.user.id,
         },
       });
+
+      revalidatePath("/blogs", "page");
 
       return {
         info: "Blog created successfully.",

@@ -179,6 +179,10 @@
   }
 }
 
+.markdown b, .markdown strong, .markdown i {
+  @apply text-lime-400;
+}
+
 
 .markdown h1,
 .markdown h2,
@@ -186,7 +190,7 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply my-5;
+  @apply my-8;
 }
 
 .markdown h1 {
@@ -194,7 +198,7 @@
 }
 
 .markdown h2 {
-  @apply text-4xl font-bold text-cyan-400;
+  @apply text-3xl font-bold text-cyan-400;
 }
 .markdown h3 {
   @apply text-2xl font-bold text-cyan-400;
