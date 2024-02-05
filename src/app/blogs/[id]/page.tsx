@@ -19,9 +19,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm -z-20" />
+      <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm -z-20" />
       <Container>
-        <p className="text-center font-bold text-lg mb-8">{blog.title}</p>
+        <p className="text-center font-bold text-3xl mb-12 tracking-tight">
+          {blog.title}
+        </p>
 
         <MyMarkdown>{blog.content}</MyMarkdown>
       </Container>

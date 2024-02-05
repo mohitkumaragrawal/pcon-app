@@ -1,5 +1,5 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
 
@@ -13,12 +13,12 @@ interface Props {
 }
 
 export default function SignInPage(props: Props) {
+  const [loading, setLoading] = useState(false);
+
   let callbackUrl = props.searchParams?.callbackUrl;
   if (!callbackUrl) {
     callbackUrl = process.env.NEXTAUTH_URL;
   }
-
-  const [loading, setLoading] = useState(false);
 
   return (
     <>

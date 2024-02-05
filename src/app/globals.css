@@ -272,3 +272,7 @@
 ::-webkit-scrollbar-thumb:focus {
   background-color: deepskyblue; /* Change color on focus */
 }
+
+.katex-html {
+  display: none;
+}
