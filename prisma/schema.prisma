@@ -75,7 +75,12 @@ model Blog {
   shortDescription String?
   content          String
 
-  BlogTag BlogTag[]
+  BlogTag     BlogTag[]
+  Event       Event[]
+  Achievement Achievement[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model BlogTag {
@@ -84,4 +89,45 @@ model BlogTag {
   tag    String
 
   @@unique([blogId, tag])
+}
+
+model Image {
+  id          String        @id
+  title       String
+  width       Int
+  height      Int
+  imageUrl    String
+  mediumUrl   String
+  thumUrl     String
+  deleteUrl   String
+  Event       Event[]
+  Achievement Achievement[]
+}
+
+model Event {
+  id    String @id @default(cuid())
+  title String
+
+  poster        Image  @relation(fields: [posterImageId], references: [id])
+  posterImageId String
+
+  blog   Blog   @relation(fields: [blogId], references: [id])
+  blogId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Achievement {
+  id    String @id @default(cuid())
+  title String
+
+  poster        Image  @relation(fields: [posterImageId], references: [id])
+  posterImageId String
+
+  blog   Blog   @relation(fields: [blogId], references: [id])
+  blogId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

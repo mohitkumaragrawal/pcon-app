@@ -9,24 +9,30 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
-  Button,
 } from "@nextui-org/react";
 
 import logo from "../assets/pcon-transparent.png";
 import useOffsetTop from "../hooks/useOffsetTop";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-
-import { useSession } from "next-auth/react";
-
-import { FcGoogle } from "react-icons/fc";
 import Profile from "./profile";
+import type { Session } from "next-auth";
+import { usePathname } from "next/navigation";
 
-function NavLink({ children, link }) {
+function NavLink({
+  children,
+  link,
+  onClick,
+}: {
+  children: React.ReactNode;
+  link: string;
+  onClick?: () => void;
+}) {
   return (
     <Link
       className="text-lg uppercase font-bold cursor-pointer transition-all nav-link"
+      onClick={onClick}
       href={link}
     >
       {children}
@@ -57,10 +63,27 @@ const menuItems = [
   },
 ];
 
-export default function Nav() {
-  const scrolled = useOffsetTop(50);
+const adminMenuItems = [
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Manage Achievements",
+    link: "/admin/achievements",
+  },
+  {
+    name: "Manage Events",
+    link: "/admin/events",
+  },
+];
 
-  const [loading, setLoading] = useState(false);
+interface NavProps {
+  session?: Session;
+}
+
+export default function Nav(props: NavProps) {
+  const scrolled = useOffsetTop(50);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -70,9 +93,18 @@ export default function Nav() {
   const unscrolledGradient =
     "linear-gradient(180deg, rgba(0,0,10, 0.5) 0%, rgba(0,0,0,0) 100%)";
 
-  const session = useSession();
+  // console.log(window.location.href);
 
-  // const status = session && session.user ? "authenticated" : "unauthenticated";
+  const path = usePathname();
+  const isAdmin = path.startsWith("/admin");
+
+  let navItems: { name: string; link: string }[];
+
+  if (isAdmin) {
+    navItems = adminMenuItems;
+  } else {
+    navItems = menuItems;
+  }
 
   return (
     <Navbar
@@ -97,7 +129,7 @@ export default function Nav() {
       </NavbarContent>
 
       <NavbarContent className="md:hidden" justify="end">
-        <Profile session={session.data} status={session.status} />
+        <Profile session={props.session} />
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="ml-3"
@@ -114,19 +146,21 @@ export default function Nav() {
           />
         </NavbarBrand>
 
-        {menuItems.map((item, index) => (
+        {navItems.map((item, index) => (
           <NavbarItem key={`${item}-${index}`}>
             <NavLink link={item.link}>{item.name}</NavLink>
           </NavbarItem>
         ))}
         <NavbarItem className="gap-10 hidden md:flex">
-          <Profile session={session.data} status={session.status} />
+          <Profile session={props.session} />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu className="py-10 overflow-hidden">
-        {menuItems.map((item, index) => (
+        {navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <NavLink link={item.link}>{item.name}</NavLink>
+            <NavLink link={item.link} onClick={() => setIsMenuOpen(false)}>
+              {item.name}
+            </NavLink>
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

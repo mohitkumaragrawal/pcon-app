@@ -2,21 +2,18 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
-export default async function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function AdminLayout({ children }) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.roles?.includes("admin")) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
+    return redirect("/");
   }
 
-  return <p>Welcome to Admin Portal</p>;
+  return (
+    <>
+      <div className="fixed inset-0 bg-black/30 -z-10"></div>
+      {children}
+    </>
+  );
 }

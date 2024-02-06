@@ -1,10 +1,9 @@
 import Container from "@/components/container";
 import ProfileCard from "@/components/profile/profile-card";
 import { authOptions } from "@/lib/auth";
-import { Spinner } from "@nextui-org/react";
 import { getServerSession } from "next-auth";
 
-import { Button, Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
+import { Card, CardBody } from "@nextui-org/react";
 
 export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
