@@ -50,7 +50,12 @@ const achievementSchema = z.object({
 
 export type AchievementSchema = z.infer<typeof achievementSchema>;
 
-export default function AchievementForm() {
+interface AchivementFormProps {
+  action?: (data: FormData) => Promise<any>;
+  toastData?: { loading: string; success: string; error: string };
+}
+
+export default function AchievementForm(props: AchivementFormProps) {
   const [loading, setLoading] = useState(false);
 
   const form = useForm<AchievementSchema>({
@@ -82,6 +87,19 @@ export default function AchievementForm() {
       toast.error("Blog doesn't exist");
     }
 
+    try {
+      const data = new FormData();
+      data.append("blogId", schema.blogId);
+      data.append("poster", schema.poster);
+      data.append("title", schema.title);
+
+      const promise = props.action(data);
+      toast.promise(promise, props.toastData);
+
+      await promise;
+    } catch (e) {}
+
+    form.reset();
     setLoading(false);
   };
 

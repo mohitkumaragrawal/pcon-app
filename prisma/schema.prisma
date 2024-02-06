@@ -92,13 +92,13 @@ model BlogTag {
 }
 
 model Image {
-  id          String        @id
+  id          String        @id @default(cuid())
   title       String
   width       Int
   height      Int
   imageUrl    String
   mediumUrl   String
-  thumUrl     String
+  thumbUrl    String
   deleteUrl   String
   Event       Event[]
   Achievement Achievement[]

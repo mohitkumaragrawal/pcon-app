@@ -3,6 +3,7 @@
 import prisma from "@/lib/prisma";
 
 export default async function checkBlogId(blogId: string): Promise<boolean> {
+  if (!blogId) return false;
   try {
     const blog = await prisma.blog.findFirst({
       select: {
