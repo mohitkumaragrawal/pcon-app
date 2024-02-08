@@ -13,8 +13,8 @@ interface ImageInputProps {
 export default function ImageInput(props: ImageInputProps) {
   // const [file, setFile] = useState<File>(null);
 
-  const imgRef = useRef();
-  const filePickerRef = useRef();
+  const imgRef = useRef<HTMLImageElement>();
+  const filePickerRef = useRef<HTMLInputElement>();
   const [isDragOver, setIsDragOver] = useState(false);
 
   const handleDrop = (ev: DragEvent<HTMLDivElement>) => {
