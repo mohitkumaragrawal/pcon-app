@@ -2,13 +2,19 @@ import { uploadImage } from "@/actions/uploadImage";
 import AchievementForm from "@/components/admin/achievement-form";
 import Container from "@/components/container";
 import GlitchHeading from "@/components/glitch-heading";
+import { authOptions } from "@/lib/auth";
+import { hasRole } from "@/lib/has-role";
 import prisma from "@/lib/prisma";
-
-import { z } from "zod";
+import { getServerSession } from "next-auth";
 
 export default function AchievementsCreatePage() {
   async function actionCreateAchievement(schema: FormData) {
     "use server";
+
+    const session = await getServerSession(authOptions);
+    if (!hasRole(session, "admin")) {
+      throw new Error("Unauthorized");
+    }
 
     const poster = schema.get("poster") as File;
     const blogId = schema.get("blogId") as string;

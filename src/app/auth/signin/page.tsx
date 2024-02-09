@@ -23,7 +23,7 @@ export default function SignInPage(props: Props) {
   return (
     <>
       <div className="max-w-xl mx-auto pt-36 px-4">
-        <Card className="bg-slate-800/30 backdrop-blur-lg min-w-96">
+        <Card className="bg-slate-800/30 backdrop-blur-lg min-w-64">
           <CardHeader className="px-4 py-4 text-3xl">Sign in</CardHeader>
           <Divider />
           <CardBody className="flex justify-center">

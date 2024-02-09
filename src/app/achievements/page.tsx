@@ -16,11 +16,11 @@ export default async function AchievementsPage() {
 
   return (
     <Container>
-      <GlitchHeading className="text-2xl sm:text-5xl mb-6 sm:mb-10 mt-16">
+      <GlitchHeading className="text-2xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
         Achievements
       </GlitchHeading>
 
-      <div>
+      <div className="gap-10 grid grid-cols-1 md:grid-cols-2 pb-32 ">
         {achievements.map((ach) => (
           <AchievementCard achievement={ach} key={ach.id} />
         ))}

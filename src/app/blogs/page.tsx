@@ -9,6 +9,7 @@ import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import BlogCard from "@/components/blog/blog-card";
+import { hasRole } from "@/lib/has-role";
 
 export default async function Blogs() {
   const session = await getServerSession(authOptions);
@@ -22,6 +23,8 @@ export default async function Blogs() {
     },
     take: 20,
   });
+
+  const isAdmin = hasRole(session, "admin");
 
   async function actionDeleteBlog(blogId: string) {
     "use server";
@@ -74,13 +77,18 @@ export default async function Blogs() {
       )}
 
       <div className="flex flex-col gap-3">
-        {blogs.map((blog) => (
-          <BlogCard
-            blog={blog}
-            actionDeleteBlog={actionDeleteBlog}
-            key={blog.id}
-          />
-        ))}
+        {blogs.map((blog) => {
+          const isOwner = session?.user?.id === blog.author.id;
+
+          return (
+            <BlogCard
+              blog={blog}
+              actionDeleteBlog={actionDeleteBlog}
+              key={blog.id}
+              canChange={isOwner || isAdmin}
+            />
+          );
+        })}
       </div>
     </Container>
   );

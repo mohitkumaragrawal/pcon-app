@@ -1,19 +1,18 @@
 import Container from "@/components/container";
 import ProfileCard from "@/components/profile/profile-card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
-
-import { Card, CardBody } from "@nextui-org/react";
 
 export default async function ProfilePage() {
   const session = await getServerSession(authOptions);
 
   return (
-    <Container className="flex gap-8 flex-col md:flex-row p-3">
+    <Container className="gap-8 flex flex-col p-3">
       <ProfileCard session={session} />
 
-      <Card className="bg-slate-800/30 backdrop-blur-lg min-w-80 flex-1">
-        <CardBody>Profile body</CardBody>
+      <Card>
+        <CardHeader>Profile</CardHeader>
       </Card>
     </Container>
   );
