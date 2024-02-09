@@ -19,7 +19,7 @@ export default function AchievementCard({ achievement }: AchievementCardProps) {
   return (
     <div className="border-2 flex flex-col sm:flex-row bg-slate-800/30 bg-grid-small-cyan-600/[0.8] bg-blend-multiply gap-2">
       {/* // <Card className="flex flex-col sm:flex-row"> */}
-      <div className="h-full relative flex items-center justify-center p-2">
+      <div className="h-full relative flex items-center justify-center p-2 flex-1">
         <img
           src={achievement.poster.imageUrl}
           alt="achievement image"
@@ -27,7 +27,7 @@ export default function AchievementCard({ achievement }: AchievementCardProps) {
         />
       </div>
 
-      <div className="bg-slate-900/20 flex flex-col justify-between ml-4 sm:ml-0">
+      <div className="bg-slate-900/20 flex-1 flex flex-col justify-between ml-4 sm:ml-0">
         <p className="font-bold text-xl mt-4">{achievement.title}</p>
 
         <Link href={`/blogs/${achievement.blogId}`}>

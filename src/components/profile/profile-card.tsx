@@ -2,11 +2,24 @@ import { Session } from "next-auth";
 import { Card } from "../ui/card";
 import { hasRole } from "@/lib/has-role";
 
-import socialMediaIcons from "./social-media-icons";
+import socialMedia from "@/lib/social-media";
+
+interface SocialMediaHandleProps {
+  platform: {
+    name: string;
+    icon: React.ReactNode;
+  };
+}
+function SocialMediaHandle(props: SocialMediaHandleProps) {
+  return (
+    <div className="flex gap-3 items-center py-4 px-4 rounded-full border-2 transition-all hover:bg-slate-900 cursor-pointer">
+      <span className="">{props.platform.icon}</span>
+    </div>
+  );
+}
 
 export default function ProfileCard({ session }: { session: Session }) {
   const isAdmin = hasRole(session, "admin");
-
   return (
     <Card className="w-full">
       <div className="flex flex-col items-center py-8 relative">
@@ -27,16 +40,10 @@ export default function ProfileCard({ session }: { session: Session }) {
         <p className="text-2xl font-bold mt-4">{session.user.name}</p>
         <p className="opacity-80">{session.user.email}</p>
 
-        <div className="mt-3 flex gap-2">
-          {socialMediaIcons["instagram"]}
-
-          <p>Codeforces</p>
-          <p>Codechef</p>
-          <p>Email</p>
-          <p>Phone</p>
-          <p>Twitter</p>
-          <p>Discord</p>
-          <p>Instagram</p>
+        <div className="mt-4 flex gap-2 px-3 flex-wrap justify-center">
+          {socialMedia.map((p) => (
+            <SocialMediaHandle platform={p} key={p.name} />
+          ))}
         </div>
       </div>
     </Card>

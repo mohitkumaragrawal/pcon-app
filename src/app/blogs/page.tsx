@@ -26,38 +26,11 @@ export default async function Blogs() {
 
   const isAdmin = hasRole(session, "admin");
 
-  async function actionDeleteBlog(blogId: string) {
-    "use server";
-
-    if (!session) {
-      return null;
-    }
-
-    try {
-      await prisma.blog.delete({
-        where: {
-          id: blogId,
-          authorId: session?.user?.id,
-        },
-      });
-
-      revalidatePath("/blogs");
-
-      return {
-        info: "Blog deleted successfully.",
-      };
-    } catch (error) {
-      return {
-        error: "Error deleting blog. Please try again.",
-      };
-    }
-  }
-
   return (
     <Container>
-      <div className="flex justify-between items-center pb-10">
-        <GlitchHeading className="text-4xl">Blogs</GlitchHeading>
-        <div className="flex gap-3">
+      <div className="flex justify-between items-center mb-6 sm:mb-10 sm:mt-16">
+        <GlitchHeading className="text-2xl sm:text-5xl">Blogs</GlitchHeading>
+        <div className="flex gap-3 self-start">
           {session && (
             <Link href="/blogs/create">
               <Button variant="secondary">
@@ -83,7 +56,6 @@ export default async function Blogs() {
           return (
             <BlogCard
               blog={blog}
-              actionDeleteBlog={actionDeleteBlog}
               key={blog.id}
               canChange={isOwner || isAdmin}
             />

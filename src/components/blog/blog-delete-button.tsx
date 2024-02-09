@@ -1,28 +1,30 @@
 "use client";
 
-import { DeleteIcon, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import DeleteConfirm from "../delete-confirm";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
-import { revalidatePath } from "next/cache";
+
+import actionDeleteBlog from "@/actions/deleteBlog";
 
 interface Props {
-  deleteAction?: any;
   blogId: string;
 }
 
-export default function BlogDeleteButton({ deleteAction, blogId }: Props) {
+export default function BlogDeleteButton({ blogId }: Props) {
   const handleDelete = async () => {
-    const result = deleteAction(blogId);
+    const result = actionDeleteBlog(blogId);
     toast.promise(result, {
       loading: "Deleting...",
       success: "Blog deleted successfully.",
-      error: "Error deleting blog. Please try again.",
+      error: (err) => <p>{err.message}</p>,
     });
 
     try {
       await result;
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

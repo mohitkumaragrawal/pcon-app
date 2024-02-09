@@ -36,15 +36,28 @@ model Session {
 }
 
 model User {
-  id            String      @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?     @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
-  accounts      Account[]
-  sessions      Session[]
-  Blog          Blog[]
-  UserRoles     UserRoles[]
+
+  username String?
+  gender   String?
+
+  accounts          Account[]
+  sessions          Session[]
+  Blog              Blog[]
+  UserRoles         UserRoles[]
+  SocialMediaHandle SocialMediaHandle[]
+}
+
+model SocialMediaHandle {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  type   String
+  handle String
+  userId String
 }
 
 model UserRoles {

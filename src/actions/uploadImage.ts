@@ -22,6 +22,8 @@ export async function uploadImage(file: File): Promise<string> {
 
   const data = await response.json();
 
+  console.log(data);
+
   if (data?.status !== 200) {
     throw new Error("Error uploading image");
   }

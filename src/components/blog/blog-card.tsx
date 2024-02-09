@@ -25,15 +25,10 @@ interface Blog {
 
 interface BlogCardProps {
   blog: Blog;
-  actionDeleteBlog: any;
   canChange: boolean;
 }
 
-export default function BlogCard({
-  blog,
-  actionDeleteBlog,
-  canChange,
-}: BlogCardProps) {
+export default function BlogCard({ blog, canChange }: BlogCardProps) {
   const tags = ["event", "announcement", "news"];
 
   return (
@@ -47,10 +42,7 @@ export default function BlogCard({
         </Link>
         {canChange && (
           <div className="gap-2 flex">
-            <BlogDeleteButton
-              blogId={blog.id}
-              deleteAction={actionDeleteBlog}
-            />
+            <BlogDeleteButton blogId={blog.id} />
             <Link href={`/blogs/edit/${blog.id}`}>
               <Button variant="secondary">
                 <EditIcon size={16} />
