@@ -58,6 +58,8 @@ model SocialMediaHandle {
   type   String
   handle String
   userId String
+
+  @@unique([type, userId])
 }
 
 model UserRoles {

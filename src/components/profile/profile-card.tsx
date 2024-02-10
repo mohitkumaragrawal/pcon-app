@@ -3,22 +3,34 @@ import { Card } from "../ui/card";
 import { hasRole } from "@/lib/has-role";
 
 import socialMedia from "@/lib/social-media";
+import Link from "next/link";
 
 interface SocialMediaHandleProps {
   platform: {
     name: string;
     icon: React.ReactNode;
   };
+  handle: string;
 }
 function SocialMediaHandle(props: SocialMediaHandleProps) {
   return (
-    <div className="flex gap-3 items-center py-4 px-4 rounded-full border-2 transition-all hover:bg-slate-900 cursor-pointer">
+    <Link
+      href={props.handle}
+      target="_blank"
+      className="flex gap-3 items-center py-4 px-4 rounded-full border-2 transition-all hover:bg-slate-900 cursor-pointer"
+    >
       <span className="">{props.platform.icon}</span>
-    </div>
+    </Link>
   );
 }
 
-export default function ProfileCard({ session }: { session: Session }) {
+export default function ProfileCard({
+  session,
+  accounts,
+}: {
+  session: Session;
+  accounts: { type: string; handle: string }[];
+}) {
   const isAdmin = hasRole(session, "admin");
   return (
     <Card className="w-full">
@@ -41,9 +53,16 @@ export default function ProfileCard({ session }: { session: Session }) {
         <p className="opacity-80">{session.user.email}</p>
 
         <div className="mt-4 flex gap-2 px-3 flex-wrap justify-center">
-          {socialMedia.map((p) => (
-            <SocialMediaHandle platform={p} key={p.name} />
-          ))}
+          {accounts.map((acc) => {
+            const p = socialMedia.find((x) => x.name === acc.type);
+            return (
+              <SocialMediaHandle
+                platform={p}
+                key={p.name}
+                handle={acc.handle}
+              />
+            );
+          })}
         </div>
       </div>
     </Card>

@@ -23,8 +23,6 @@ export const authOptions: NextAuthOptions = {
       if (session?.user) {
         session.user.id = user.id;
 
-        console.log("FROM SESSION: ", user);
-
         // get the user's roles
         const userRoles = await prisma.userRoles.findMany({
           select: {

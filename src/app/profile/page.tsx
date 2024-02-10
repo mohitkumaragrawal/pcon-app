@@ -2,6 +2,8 @@ import BlogDeleteButton from "@/components/blog/blog-delete-button";
 import Container from "@/components/container";
 import AccountSettings from "@/components/profile/account-settings";
 import ProfileCard from "@/components/profile/profile-card";
+import SocialMedia from "@/components/profile/social-media";
+import SocialMediaForm from "@/components/profile/social-media-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -20,9 +22,20 @@ export default async function ProfilePage() {
     },
   });
 
+  // fetch all the user accounts;
+  const accounts = await prisma.socialMediaHandle.findMany({
+    select: {
+      type: true,
+      handle: true,
+    },
+    where: {
+      userId: session?.user?.id,
+    },
+  });
+
   return (
     <Container className="gap-8 flex flex-col p-3 max-w-[50rem]">
-      <ProfileCard session={session} />
+      <ProfileCard session={session} accounts={accounts} />
 
       <Tabs defaultValue="blogs" className="max-w-[50rem] w-full mx-auto">
         <TabsList>
@@ -63,12 +76,7 @@ export default async function ProfilePage() {
           <AccountSettings session={session} />
         </TabsContent>
         <TabsContent value="social-media">
-          <Card>
-            <CardHeader className="font-bold text-xl">
-              Social Media Accounts
-            </CardHeader>
-            <CardContent>Social</CardContent>
-          </Card>
+          <SocialMedia accounts={accounts} />
         </TabsContent>
       </Tabs>
     </Container>
