@@ -24,10 +24,7 @@ export default function SocialMedia({ accounts: initialAccounts }: Props) {
         Social Media Accounts
       </CardHeader>
       <CardContent>
-        <SocialMediaForm
-          onAdded={(t, a) => setAccounts([...accounts, { type: t, handle: a }])}
-        />
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col gap-3 my-8">
           {accounts.map((val) => (
             <div
               key={val.type}
@@ -67,6 +64,9 @@ export default function SocialMedia({ accounts: initialAccounts }: Props) {
             <p className="text-muted-foreground">No Social Media Accounts</p>
           )}
         </div>
+        <SocialMediaForm
+          onAdded={(t, a) => setAccounts([...accounts, { type: t, handle: a }])}
+        />
       </CardContent>
     </Card>
   );

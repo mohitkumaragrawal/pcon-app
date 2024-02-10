@@ -19,6 +19,16 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user }) {
+      const userEmail = user.email;
+      if (!userEmail) return false;
+
+      if (userEmail.endsWith("@nitjsr.ac.in")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     session: async ({ session, user }) => {
       if (session?.user) {
         session.user.id = user.id;

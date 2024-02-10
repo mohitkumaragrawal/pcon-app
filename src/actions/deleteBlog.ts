@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 
 import prisma from "@/lib/prisma";
 import { hasRole } from "@/lib/has-role";
+import { revalidatePath } from "next/cache";
 
 export default async function actionDeleteBlog(blogId: string) {
   "use server";
@@ -58,4 +59,6 @@ export default async function actionDeleteBlog(blogId: string) {
       authorId: session?.user?.id,
     },
   });
+
+  revalidatePath("/blogs");
 }

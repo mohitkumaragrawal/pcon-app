@@ -129,6 +129,9 @@ model Event {
   blog   Blog   @relation(fields: [blogId], references: [id])
   blogId String
 
+  startDate DateTime
+  endDate   DateTime
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

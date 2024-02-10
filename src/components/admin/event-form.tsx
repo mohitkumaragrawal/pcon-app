@@ -21,7 +21,9 @@ import { useState } from "react";
 import { Spinner } from "@nextui-org/react";
 
 import checkBlogId from "@/actions/checkBlogId";
-import actionCreateAchievement from "@/actions/createAchievement";
+import actionCreateEvent from "@/actions/createEvent";
+import DatePicker from "../date-picker";
+import { useRouter } from "next/navigation";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -31,7 +33,7 @@ const ACCEPTED_IMAGE_TYPES = [
   "image/webp",
 ];
 
-const achievementSchema = z.object({
+const eventSchema = z.object({
   title: z.string().min(3, {
     message: "Title should be atleast 3 letters long",
   }),
@@ -48,20 +50,19 @@ const achievementSchema = z.object({
       (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
       "Only .jpg, .jpeg, .png and .webp formats are supported."
     ),
+
+  startDate: z.date(),
+  endDate: z.date(),
 });
 
-export type AchievementSchema = z.infer<typeof achievementSchema>;
-
-interface AchivementFormProps {
-  toastData?: { loading: string; success: string; error: string };
-}
-
-export default function AchievementForm(props: AchivementFormProps) {
+export type EventSchema = z.infer<typeof eventSchema>;
+export default function EventForm() {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const form = useForm<AchievementSchema>({
+  const form = useForm<EventSchema>({
     resolver: zodResolver(
-      achievementSchema.refine(
+      eventSchema.refine(
         (val) => {
           console.log("Form refine", val);
           return true;
@@ -79,7 +80,7 @@ export default function AchievementForm(props: AchivementFormProps) {
     },
   });
 
-  const handleSubmit = async (schema: AchievementSchema) => {
+  const handleSubmit = async (schema: EventSchema) => {
     setLoading(true);
 
     const isValid = await checkBlogId(schema.blogId);
@@ -93,11 +94,21 @@ export default function AchievementForm(props: AchivementFormProps) {
       data.append("blogId", schema.blogId);
       data.append("poster", schema.poster);
       data.append("title", schema.title);
+      const startDate = schema.startDate.toISOString();
+      const endDate = schema.endDate.toISOString();
+      data.append("startDate", startDate);
+      data.append("endDate", endDate);
 
-      const promise = actionCreateAchievement(data);
-      toast.promise(promise, props.toastData);
+      const promise = actionCreateEvent(data);
+      toast.promise(promise, {
+        loading: "Creating Event..",
+        success: "Successfully created event",
+        error: "Something went wrong",
+      });
 
       await promise;
+
+      router.push("/admin/events");
     } catch (e) {}
 
     form.reset();
@@ -159,6 +170,35 @@ export default function AchievementForm(props: AchivementFormProps) {
           )}
         />
 
+        <FormField
+          control={form.control}
+          name="startDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Start Date</FormLabel>
+              <FormControl>
+                <DatePicker date={field.value} setDate={field.onChange} />
+              </FormControl>
+              <FormDescription>When does the event starts?</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="endDate"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>End Date</FormLabel>
+              <FormControl>
+                <DatePicker date={field.value} setDate={field.onChange} />
+              </FormControl>
+              <FormDescription>When does the event ends?</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button
           type="submit"
           variant="secondary"
@@ -166,7 +206,7 @@ export default function AchievementForm(props: AchivementFormProps) {
           disabled={loading}
         >
           {loading && <Spinner className="mr-3" />}
-          Create Achivement
+          Create Event
         </Button>
       </form>
     </Form>
