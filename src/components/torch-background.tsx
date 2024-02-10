@@ -18,7 +18,9 @@ export default function TorchBackground() {
       <div
         className="fixed inset-0 transition-all -z-40"
         style={{
-          background: `radial-gradient(circle at ${x}px ${y}px, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,
+          background: `radial-gradient(circle at 100% 0, #1d173eaf 0%, rgba(0,0,20,1) 46%),
+                      radial-gradient(circle at 0 0, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,
+          backgroundBlendMode: "lighten",
           filter: "blur(10px)",
         }}
       ></div>
