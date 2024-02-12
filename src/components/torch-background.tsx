@@ -1,18 +1,8 @@
 "use client";
 
-import useMousePosition from "../hooks/useMousePosition";
 import looperPattern from "@/assets/looper-pattern.svg";
 
 export default function TorchBackground() {
-  // let { x, y } = useMousePosition();
-  let x: number = 0,
-    y: number = 0;
-
-  if (x == null || y == null) {
-    x = 0;
-    y = 0;
-  }
-
   return (
     <>
       <div
@@ -29,7 +19,9 @@ export default function TorchBackground() {
         style={{
           backgroundImage: `url(${looperPattern.src})`,
           backgroundPosition: "center",
-          filter: "grayscale(100) hue-rotate(70deg)",
+
+          filter: "grayscale(0.5) hue-rotate(-40deg)",
+          opacity: "0.6",
         }}
       />
     </>
