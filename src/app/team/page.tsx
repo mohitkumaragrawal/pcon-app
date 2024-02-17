@@ -64,7 +64,14 @@ export default async function TeamPage() {
 
       {order.map((category) => (
         <div key={category} className="my-8">
-          <p className="text-3xl font-bold">{category}</p>
+          <p
+            className="text-3xl font-bold glitch"
+            style={{
+              fontFamily: "monospace",
+            }}
+          >
+            {category}
+          </p>
 
           <div className="grid md:grid-cols-2 gap-6 mt-3 mb-10">
             {grouped[category]?.map((user) => (

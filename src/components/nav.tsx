@@ -66,7 +66,11 @@ const menuItems = [
 const adminMenuItems = [
   {
     name: "Home",
-    link: "/",
+    link: "/admin",
+  },
+  {
+    name: "Roles",
+    link: "/admin/roles",
   },
   {
     name: "Manage Achievements",
@@ -119,12 +123,14 @@ export default function Nav(props: NavProps) {
     >
       <NavbarContent className="md:hidden pr-3" justify="center">
         <NavbarBrand>
-          <Image
-            src={logo.src}
-            width={80}
-            className="brightness-150"
-            alt="PCON"
-          />
+          <Link href="/">
+            <Image
+              src={logo.src}
+              width={80}
+              className="brightness-150"
+              alt="PCON"
+            />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -138,12 +144,14 @@ export default function Nav(props: NavProps) {
 
       <NavbarContent className="gap-10 hidden md:flex">
         <NavbarBrand>
-          <Image
-            src={logo.src}
-            alt="PCON"
-            width={80}
-            className="brightness-150"
-          />
+          <Link href="/">
+            <Image
+              src={logo.src}
+              alt="PCON"
+              width={80}
+              className="brightness-150"
+            />
+          </Link>
         </NavbarBrand>
 
         {navItems.map((item, index) => (

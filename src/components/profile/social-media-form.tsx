@@ -88,14 +88,16 @@ export default function SocialMediaForm(props: Props) {
                     />
                   </SelectTrigger>
                   <SelectContent>
-                    {socialMedia.map((sm) => (
-                      <SelectItem key={sm.name} value={sm.name}>
-                        <div className="flex items-center gap-3">
-                          {sm.icon}
-                          <p className="capitalize">{sm.name}</p>
-                        </div>
-                      </SelectItem>
-                    ))}
+                    {socialMedia.map((sm) =>
+                      sm.name == "pcon" ? null : (
+                        <SelectItem key={sm.name} value={sm.name}>
+                          <div className="flex items-center gap-3">
+                            {sm.icon}
+                            <p className="capitalize">{sm.name}</p>
+                          </div>
+                        </SelectItem>
+                      )
+                    )}
                   </SelectContent>
                 </Select>
               </FormControl>
