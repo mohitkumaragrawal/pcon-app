@@ -7,7 +7,6 @@ import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 import prisma from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
 import BlogCard from "@/components/blog/blog-card";
 import { hasRole } from "@/lib/has-role";
 

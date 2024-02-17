@@ -1,5 +1,7 @@
 import Container from "@/components/container";
 import GlitchHeading from "@/components/glitch-heading";
+import ProfileCard from "@/components/profile/profile-card";
+import getProfileLink from "@/lib/get-profile-link";
 import prisma from "@/lib/prisma";
 
 export default async function TeamPage() {
@@ -37,7 +39,6 @@ export default async function TeamPage() {
       else if (role?.role === "pcon:Member") member = true;
       else post = role?.role.split(":")[1];
     }
-
     if (!pcon) continue;
     if (alumni) {
       grouped["Alumni"] = grouped["Alumni"] || [];
@@ -53,12 +54,33 @@ export default async function TeamPage() {
       grouped["Members"].push({ ...x, post: "Member" });
     }
   }
+  const order = ["President", "Core Members", "Members", "Alumni"];
 
   return (
     <Container>
       <GlitchHeading className="text-2xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
         Our Team
       </GlitchHeading>
+
+      {order.map((category) => (
+        <div key={category} className="my-8">
+          <p className="text-3xl font-bold">{category}</p>
+
+          <div className="grid md:grid-cols-2 gap-6 mt-3 mb-10">
+            {grouped[category]?.map((user) => (
+              <ProfileCard
+                key={user.id}
+                accounts={user.SocialMediaHandle}
+                email={user.email}
+                image={user.image}
+                name={user.name}
+                profileLink={getProfileLink(user.id, user.username)}
+                roles={user.UserRoles.map((x) => x.role)}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
     </Container>
   );
 }

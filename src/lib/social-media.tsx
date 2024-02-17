@@ -5,6 +5,7 @@ import { SiCodechef } from "react-icons/si";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaDiscord } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
+import { TbLetterP } from "react-icons/tb";
 
 const socialMedia = [
   { name: "github", icon: <FaGithub /> },
@@ -14,6 +15,7 @@ const socialMedia = [
   { name: "twitter", icon: <FaXTwitter /> },
   { name: "instagram", icon: <FaInstagram /> },
   { name: "discord", icon: <FaDiscord /> },
+  { name: "pcon", icon: <TbLetterP /> },
 ];
 
 export default socialMedia;

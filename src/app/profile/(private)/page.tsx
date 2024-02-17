@@ -3,11 +3,11 @@ import Container from "@/components/container";
 import AccountSettings from "@/components/profile/account-settings";
 import ProfileCard from "@/components/profile/profile-card";
 import SocialMedia from "@/components/profile/social-media";
-import SocialMediaForm from "@/components/profile/social-media-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { authOptions } from "@/lib/auth";
+import getProfileLink from "@/lib/get-profile-link";
 import prisma from "@/lib/prisma";
 import { EditIcon } from "lucide-react";
 import { getServerSession } from "next-auth";
@@ -35,7 +35,14 @@ export default async function ProfilePage() {
 
   return (
     <Container className="gap-8 flex flex-col p-3 max-w-[50rem]">
-      <ProfileCard session={session} accounts={accounts} />
+      <ProfileCard
+        accounts={accounts}
+        name={session?.user?.name}
+        email={session?.user?.email}
+        roles={session?.user?.roles}
+        image={session?.user?.image}
+        profileLink={getProfileLink(session?.user?.id, session?.user?.username)}
+      />
 
       <Tabs defaultValue="blogs" className="max-w-[50rem] w-full mx-auto">
         <TabsList>

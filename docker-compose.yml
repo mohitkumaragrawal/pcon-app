@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: pcon
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ../pcon-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     networks:

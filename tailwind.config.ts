@@ -94,7 +94,7 @@ const config = {
   plugins: [
     require("tailwindcss-animate"),
     nextui(),
-    function ({ matchUtilities, theme }) {
+    function({ matchUtilities, theme }) {
       matchUtilities(
         {
           "bg-grid": (value) => ({

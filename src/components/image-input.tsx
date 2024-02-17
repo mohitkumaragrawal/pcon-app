@@ -57,6 +57,7 @@ export default function ImageInput(props: ImageInputProps) {
           <Button
             className="absolute right-3 top-3"
             variant="destructive"
+            type="button"
             onClick={(e) => props.onFileChange(null)}
           >
             <Trash />
@@ -76,6 +77,7 @@ export default function ImageInput(props: ImageInputProps) {
       <Button
         variant="secondary"
         className="w-full"
+        type="button"
         onClick={(e) => {
           filePickerRef?.current?.click();
         }}
