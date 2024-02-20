@@ -1,9 +1,12 @@
 "use client";
-import { getSession, signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
 
-import { Button, Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
+// import { Button, Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
 import { useState } from "react";
 
 interface Props {
@@ -23,22 +26,22 @@ export default function SignInPage(props: Props) {
   return (
     <>
       <div className="max-w-xl mx-auto pt-36 px-4">
-        <Card className="bg-slate-800/30 backdrop-blur-lg min-w-64">
+        <Card className="min-w-64">
           <CardHeader className="px-4 py-4 text-3xl">Sign in</CardHeader>
-          <Divider />
-          <CardBody className="flex justify-center">
+          <CardContent className="flex justify-center">
             <Button
               onClick={() => {
                 setLoading(true);
                 signIn("google", { callbackUrl });
               }}
-              className="bg-slate-800"
-              isLoading={loading}
-              startContent={!loading && <FcGoogle />}
+              variant="default"
+
+              // isLoading={loading}
+              // startContent={!loading && <FcGoogle />}
             >
               Sign in with Google
             </Button>
-          </CardBody>
+          </CardContent>
         </Card>
       </div>
     </>

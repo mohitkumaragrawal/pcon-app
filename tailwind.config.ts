@@ -94,7 +94,7 @@ const config = {
   plugins: [
     require("tailwindcss-animate"),
     nextui(),
-    function({ matchUtilities, theme }) {
+    function ({ matchUtilities, theme }) {
       matchUtilities(
         {
           "bg-grid": (value) => ({
@@ -116,7 +116,19 @@ const config = {
         { values: flattenColorPalette(theme("backgroundColor")), type: "color" }
       );
     },
+    addVariablesForColors,
   ],
 } satisfies Config;
+
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default config;

@@ -6,6 +6,15 @@ import TextSwapper from "../text-swapper";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
+
+import Autoplay from "embla-carousel-autoplay";
 
 function AnimatedText({ children, className }) {
   return (
@@ -43,7 +52,7 @@ export default function HeroSection() {
         <GlitchHeading className="text-6xl mb-10 hidden md:block">
           PCON
         </GlitchHeading>
-        <div className="text-lg overflow-visible">
+        <div className="text-xl overflow-visible">
           Unleashing Code Wizards:{" "}
           <span className="text-cyan-500 font-bold">
             Programming Club Of NIT Jamshedpur
@@ -70,11 +79,49 @@ export default function HeroSection() {
       </div>
 
       <div className="h-full flex-1 bg-grid-small-cyan-500/[0.6] relative flex items-center justify-center p-4 ">
-        <Image
-          src={img1}
-          alt="landing image"
-          className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
-        />
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 2500,
+              waitForTransition: true,
+            }),
+          ]}
+        >
+          <CarouselContent>
+            <CarouselItem>
+              <Image
+                src={img1}
+                alt="landing image"
+                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <Image
+                src={img1}
+                alt="landing image"
+                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <Image
+                src={img1}
+                alt="landing image"
+                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <Image
+                src={img1}
+                alt="landing image"
+                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+              />
+            </CarouselItem>
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );
