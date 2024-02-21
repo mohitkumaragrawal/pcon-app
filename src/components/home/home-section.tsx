@@ -1,6 +1,18 @@
-export default function HomeSection(props: { children: React.ReactNode }) {
+import { cn } from "@/lib/utils";
+
+export default function HomeSection(props: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <section className="relative p-5 md:p-20 flex flex-col md:flex-row-reverse md:items-center gap-8 mt-20 border-3 rounded-lg mx-3 bg-dot-slate-700/[0.8] bg-black/[0.1] backdrop-blur-sm">
+    <section
+      className={cn(
+        "relative p-5 md:p-20 border-2 rounded-none sm:rounded-lg mt-8 border-slate-700",
+        "bg-slate-600/[0.1] bg-dot-slate-800 backdrop-blur-sm",
+        "mx-0 sm:mx-3",
+        props.className
+      )}
+    >
       {props.children}
     </section>
   );

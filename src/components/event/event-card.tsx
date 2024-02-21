@@ -20,17 +20,23 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event }: EventCardProps) {
-  const startDate = new Date(event.startDate).toLocaleDateString();
-  const endDate = new Date(event.endDate).toLocaleDateString();
+  const startDate = new Date(event.startDate).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+  const endDate = new Date(event.endDate).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
 
   return (
-    <div className="border-2 flex flex-col sm:flex-row bg-slate-800/30 bg-grid-small-cyan-600/[0.8] bg-blend-multiply gap-2">
+    <div className="border-2 flex flex-col sm:flex-row bg-slate-800/30 bg-grid-small-cyan-600/[0.8] bg-blend-multiply gap-2 h-full">
       {/* // <Card className="flex flex-col sm:flex-row"> */}
       <div className="h-full relative flex items-center justify-center p-2 flex-1">
         <img
           src={event.poster.imageUrl}
           alt="achievement image"
-          className="w-full h-full object-cover shadow-lg rounded-xl shadow-slate-400/20 opacity-90 hover:opacity-100 transition-all"
+          className="w-full h-[320px] md:h-full object-cover shadow-lg rounded-xl shadow-slate-400/20 opacity-90 hover:opacity-100 transition-all"
         />
       </div>
 

@@ -7,6 +7,7 @@ import Nav from "@/components/nav";
 import { Toaster } from "@/components/ui/sonner";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,8 +32,12 @@ export default async function RootLayout({
       <body>
         <Providers>
           <TorchBackground />
-          <Nav session={session} />
-          {children}
+          <div className="flex flex-col min-h-screen items-stretch">
+            <Nav session={session} />
+            <div className="w-full">{children}</div>
+            <div className="flex-1" />
+            <Footer />
+          </div>
         </Providers>
         <Toaster />
       </body>
