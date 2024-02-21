@@ -2,8 +2,6 @@
 import { signIn } from "next-auth/react";
 
 import { FcGoogle } from "react-icons/fc";
-
-// import { Button, Card, CardBody, CardHeader, Divider } from "@nextui-org/react";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -34,11 +32,11 @@ export default function SignInPage(props: Props) {
                 setLoading(true);
                 signIn("google", { callbackUrl });
               }}
-              variant="default"
-
-              // isLoading={loading}
-              // startContent={!loading && <FcGoogle />}
+              variant="secondary"
+              disabled={loading}
+              className="w-full mt-6"
             >
+              <FcGoogle className="mr-2" />
               Sign in with Google
             </Button>
           </CardContent>
