@@ -238,11 +238,15 @@
 }
 
 .markdown pre {
-  @apply bg-slate-700/60 p-3 my-4 rounded-lg;
+  @apply bg-slate-700/60 p-3 my-4 rounded-lg overflow-auto;
 }
 
 .markdown p {
   @apply my-2 text-lg;
+}
+
+.markdown ul {
+  @apply list-disc list-inside;
 }
 
 /* Scrollbar Track */
