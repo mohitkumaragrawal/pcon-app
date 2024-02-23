@@ -37,14 +37,25 @@ export async function uploadImage(file: File): Promise<{
     throw new Error("Error uploading image");
   }
 
+  let mediumUrl = data.data.url,
+    thumbUrl = data.data.url;
+  if (data.data.thumb) {
+    mediumUrl = data.data.thumb.url;
+    thumbUrl = mediumUrl;
+  }
+
+  if (data.data.medium) {
+    mediumUrl = data.data.medium.url;
+  }
+
   const result = await prisma.image.create({
     data: {
       deleteUrl: data.data.delete_url as string,
       height: data.data.height as number,
       width: data.data.width as number,
       imageUrl: data.data.url as string,
-      mediumUrl: data.data.medium.url as string,
-      thumbUrl: data.data.thumb.url as string,
+      mediumUrl: mediumUrl,
+      thumbUrl: thumbUrl,
       title: data.data.title as string,
     },
   });
