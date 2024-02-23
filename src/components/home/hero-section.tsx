@@ -2,6 +2,11 @@
 import GlitchHeading from "../glitch-heading";
 
 import img1 from "@/assets/galary/1.jpg";
+import img2 from "@/assets/galary/hero-1.jpeg";
+import img3 from "@/assets/galary/hero-2.jpeg";
+import img4 from "@/assets/galary/hero-3.jpeg";
+import img5 from "@/assets/galary/hero-4.jpeg";
+
 import TextSwapper from "../text-swapper";
 
 import { motion } from "framer-motion";
@@ -101,21 +106,28 @@ export default function HeroSection() {
             </CarouselItem>
             <CarouselItem>
               <Image
-                src={img1}
+                src={img2}
                 alt="landing image"
                 className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
-                src={img1}
+                src={img3}
                 alt="landing image"
                 className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
-                src={img1}
+                src={img4}
+                alt="landing image"
+                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <Image
+                src={img5}
                 alt="landing image"
                 className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
               />

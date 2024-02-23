@@ -3,7 +3,7 @@
 import Image from "next/image";
 import GlitchHeading from "../glitch-heading";
 
-import img1 from "@/assets/galary/1.jpg";
+import img1 from "@/assets/galary/hero-2.jpeg";
 import { TextGenerateEffect } from "../text-generate-effect";
 import HomeSection from "./home-section";
 import { cn } from "@/lib/utils";
