@@ -163,7 +163,15 @@ export default function ProfileCard({
   profileLink?: string;
   canEdit?: boolean;
 }) {
-  const isAdmin = hasRoleInArray(roles, "admin");
+  // const isAdmin = hasRoleInArray(roles, "admin");
+
+  let chips = [];
+  roles.forEach((r) => {
+    if (r.startsWith("chip:")) {
+      chips.push(r.split(":")[1]);
+    }
+  });
+
   const accounts = profileLink
     ? [...otherAccounts, { type: "pcon", handle: profileLink }]
     : otherAccounts;
@@ -171,11 +179,13 @@ export default function ProfileCard({
   return (
     <Card className="w-full">
       <div className="flex flex-col items-center py-8 relative">
-        {isAdmin && (
-          <div className="absolute top-3 right-3 px-4 py-1 rounded-full border-2">
-            admin
-          </div>
-        )}
+        <div className="absolute top-2 right-3 flex gap-2 text-sm">
+          {chips.map((chip) => (
+            <div key={chip} className="px-2 py-0 rounded-full border-2">
+              {chip}
+            </div>
+          ))}
+        </div>
 
         {canEdit ? (
           <ProfilePictureDialog image={image} userId={id} />
