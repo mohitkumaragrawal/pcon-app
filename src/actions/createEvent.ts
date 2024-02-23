@@ -19,7 +19,7 @@ export default async function actionCreateEvent(schema: FormData) {
   const startDate = schema.get("startDate") as string;
   const endDate = schema.get("endDate") as string;
 
-  const imageId = await uploadImage(poster);
+  const image = await uploadImage(poster);
 
   // now create the achievement entry;
 
@@ -27,7 +27,7 @@ export default async function actionCreateEvent(schema: FormData) {
     data: {
       title: title,
       blogId: blogId,
-      posterImageId: imageId,
+      posterImageId: image.id,
       startDate: startDate,
       endDate: endDate,
     },
