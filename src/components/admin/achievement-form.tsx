@@ -20,8 +20,8 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Spinner } from "@nextui-org/react";
 
-import checkBlogId from "@/actions/checkBlogId";
 import actionCreateAchievement from "@/actions/createAchievement";
+import MarkdownEditor from "../editor/markdown-editor";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -36,9 +36,7 @@ const achievementSchema = z.object({
     message: "Title should be atleast 3 letters long",
   }),
 
-  blogId: z.string().min(1, {
-    message: "This field is required",
-  }),
+  blog: z.string().min(1, "Blog is required"),
 
   poster: z
     .any()
@@ -74,7 +72,7 @@ export default function AchievementForm(props: AchivementFormProps) {
     ),
     defaultValues: {
       title: "",
-      blogId: "",
+      blog: "",
       poster: null,
     },
   });
@@ -82,15 +80,9 @@ export default function AchievementForm(props: AchivementFormProps) {
   const handleSubmit = async (schema: AchievementSchema) => {
     setLoading(true);
 
-    const isValid = await checkBlogId(schema.blogId);
-
-    if (!isValid) {
-      toast.error("Blog doesn't exist");
-    }
-
     try {
       const data = new FormData();
-      data.append("blogId", schema.blogId);
+      data.append("blog", schema.blog);
       data.append("poster", schema.poster);
       data.append("title", schema.title);
 
@@ -129,14 +121,15 @@ export default function AchievementForm(props: AchivementFormProps) {
 
         <FormField
           control={form.control}
-          name="blogId"
+          name="blog"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Blog Id</FormLabel>
+              <FormLabel>Blog</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <MarkdownEditor {...field} />
+                {/* <Input {...field} /> */}
               </FormControl>
-              <FormDescription>Where is the blog?</FormDescription>
+              <FormDescription>Describe your achievement</FormDescription>
               <FormMessage />
             </FormItem>
           )}

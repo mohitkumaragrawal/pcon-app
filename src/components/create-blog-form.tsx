@@ -18,10 +18,9 @@ import { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/react";
 import { toast } from "sonner";
 
-import MyMarkdown from "./my-markdown";
-
 import { useRouter } from "next/navigation";
 import BlogChipsEdit from "./blog/blog-chips-edit";
+import MarkdownEditor from "./editor/markdown-editor";
 
 const blogSchema = z.object({
   title: z.string().min(3, {
@@ -77,7 +76,6 @@ export default function CreateBlogForm({
   }, [defaultValue, form]);
 
   const [loading, setLoading] = useState(false);
-  const [preview, setPreview] = useState(false);
 
   const router = useRouter();
 
@@ -132,29 +130,10 @@ export default function CreateBlogForm({
             <FormItem>
               <FormLabel className="text-lg flex justify-between">
                 Content
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => setPreview((p) => !p)}
-                >
-                  {preview ? "Hide Preview" : "Show Preview"}
-                </Button>
               </FormLabel>
-              {preview && (
-                <MyMarkdown className="text-lg border-2 rounded-md p-3 backdrop-blur-sm">
-                  {field.value}
-                </MyMarkdown>
-              )}
-              {!preview && (
-                <FormControl>
-                  <Textarea
-                    placeholder="Content goes here..."
-                    className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
-                    rows={6}
-                    {...field}
-                  />
-                </FormControl>
-              )}
+              <FormControl>
+                <MarkdownEditor {...field} />
+              </FormControl>
               <FormDescription>
                 Write a blog post that is at least 10 characters long.
               </FormDescription>

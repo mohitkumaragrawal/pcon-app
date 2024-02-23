@@ -24,6 +24,7 @@ import checkBlogId from "@/actions/checkBlogId";
 import actionCreateEvent from "@/actions/createEvent";
 import DatePicker from "../date-picker";
 import { useRouter } from "next/navigation";
+import MarkdownEditor from "../editor/markdown-editor";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -38,7 +39,7 @@ const eventSchema = z.object({
     message: "Title should be atleast 3 letters long",
   }),
 
-  blogId: z.string().min(1, {
+  blog: z.string().min(1, {
     message: "This field is required",
   }),
 
@@ -75,7 +76,7 @@ export default function EventForm() {
     ),
     defaultValues: {
       title: "",
-      blogId: "",
+      blog: "",
       poster: null,
     },
   });
@@ -83,15 +84,9 @@ export default function EventForm() {
   const handleSubmit = async (schema: EventSchema) => {
     setLoading(true);
 
-    const isValid = await checkBlogId(schema.blogId);
-
-    if (!isValid) {
-      toast.error("Blog doesn't exist");
-    }
-
     try {
       const data = new FormData();
-      data.append("blogId", schema.blogId);
+      data.append("blog", schema.blog);
       data.append("poster", schema.poster);
       data.append("title", schema.title);
       const startDate = schema.startDate.toISOString();
@@ -140,14 +135,16 @@ export default function EventForm() {
 
         <FormField
           control={form.control}
-          name="blogId"
+          name="blog"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Blog Id</FormLabel>
+              <FormLabel>Blog</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <MarkdownEditor {...field} />
               </FormControl>
-              <FormDescription>Where is the blog?</FormDescription>
+              <FormDescription>
+                Describe about the event in detail
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

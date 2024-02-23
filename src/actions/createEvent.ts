@@ -14,7 +14,7 @@ export default async function actionCreateEvent(schema: FormData) {
   }
 
   const poster = schema.get("poster") as File;
-  const blogId = schema.get("blogId") as string;
+  const blog = schema.get("blog") as string;
   const title = schema.get("title") as string;
   const startDate = schema.get("startDate") as string;
   const endDate = schema.get("endDate") as string;
@@ -22,17 +22,31 @@ export default async function actionCreateEvent(schema: FormData) {
   const image = await uploadImage(poster);
 
   // now create the achievement entry;
+  const createdBlog = await prisma.blog.create({
+    data: {
+      title: title,
+      content: blog,
+      authorId: session.user.id,
+
+      BlogTag: {
+        createMany: {
+          data: [{ tag: "event" }],
+        },
+      },
+    },
+  });
 
   await prisma.event.create({
     data: {
       title: title,
-      blogId: blogId,
+      blogId: createdBlog.id,
       posterImageId: image.id,
       startDate: startDate,
       endDate: endDate,
     },
   });
 
+  revalidatePath("/blogs", "page");
   revalidatePath("/admin/events");
   revalidatePath("/events");
 }

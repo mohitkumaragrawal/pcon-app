@@ -5,6 +5,7 @@ import { hasRole } from "@/lib/has-role";
 import { getServerSession } from "next-auth";
 import { uploadImage } from "./uploadImage";
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export default async function actionCreateAchievement(schema: FormData) {
   const session = await getServerSession(authOptions);
@@ -13,18 +14,33 @@ export default async function actionCreateAchievement(schema: FormData) {
   }
 
   const poster = schema.get("poster") as File;
-  const blogId = schema.get("blogId") as string;
+  const blog = schema.get("blog") as string;
   const title = schema.get("title") as string;
 
   const image = await uploadImage(poster);
 
-  // now create the achievement entry;
+  const createdBlog = await prisma.blog.create({
+    data: {
+      title: title,
+      content: blog,
+      authorId: session.user.id,
+
+      BlogTag: {
+        createMany: {
+          data: [{ tag: "achievement" }],
+        },
+      },
+    },
+  });
 
   await prisma.achievement.create({
     data: {
       title: title,
-      blogId: blogId,
+      blogId: createdBlog.id,
       posterImageId: image.id,
     },
   });
+
+  revalidatePath("/blogs", "page");
+  revalidatePath("/achievements", "page");
 }
