@@ -6,6 +6,7 @@ import ProfileImage from "../profile-image";
 import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
 import { Card } from "../ui/card";
+import getProfileLink from "@/lib/get-profile-link";
 
 interface Blog {
   id: string;
@@ -20,6 +21,7 @@ interface Blog {
     email: string;
     emailVerified: Date;
     image: string;
+    username?: string;
   };
 }
 
@@ -53,16 +55,18 @@ export default function BlogCard({ blog, canChange }: BlogCardProps) {
         <div className="flex gap-2">
           {blog.BlogTag.map(({ tag }) => (
             <div
-              className="bg-cyan-200/60 px-2 py-1 rounded-full text-muted text-sm font-bold"
+              className="bg-cyan-200/60 border-2 px-2 py-1 rounded-full text-muted text-sm font-semibold"
               key={tag}
             >
               #{tag}
             </div>
           ))}
         </div>
-        <div className="text-muted-foreground flex gap-3 items-center justify-end">
-          <ProfileImage imageUrl={blog.author.image} />
-        </div>
+        <Link href={getProfileLink(blog.author.id, blog.author.username)}>
+          <div className="text-muted-foreground flex gap-3 items-center justify-end">
+            <ProfileImage imageUrl={blog.author.image} />
+          </div>
+        </Link>
       </div>
     </Card>
   );
