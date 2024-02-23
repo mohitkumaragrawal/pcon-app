@@ -7,7 +7,7 @@ import Link from "next/link";
 interface SocialMediaHandleProps {
   platform: {
     name: string;
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
   };
   handle: string;
 }
