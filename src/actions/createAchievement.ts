@@ -16,7 +16,7 @@ export default async function actionCreateAchievement(schema: FormData) {
   const blogId = schema.get("blogId") as string;
   const title = schema.get("title") as string;
 
-  const imageId = await uploadImage(poster);
+  const image = await uploadImage(poster);
 
   // now create the achievement entry;
 
@@ -24,7 +24,7 @@ export default async function actionCreateAchievement(schema: FormData) {
     data: {
       title: title,
       blogId: blogId,
-      posterImageId: imageId,
+      posterImageId: image.id,
     },
   });
 }

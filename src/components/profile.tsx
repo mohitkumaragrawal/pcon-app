@@ -65,7 +65,7 @@ export default function Profile({ session }: Props) {
           <img
             src={session?.user?.image ?? ""}
             alt="profile imge"
-            className="w-10 h-10 rounded-full overflow-hidden"
+            className="w-10 h-10 rounded-full overflow-hidden object-cover"
           />
           <div>
             <p>{session.user.name}</p>

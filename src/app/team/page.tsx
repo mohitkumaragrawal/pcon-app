@@ -77,6 +77,7 @@ export default async function TeamPage() {
             {grouped[category]?.map((user) => (
               <ProfileCard
                 key={user.id}
+                id={user.id}
                 accounts={user.SocialMediaHandle}
                 email={user.email}
                 image={user.image}

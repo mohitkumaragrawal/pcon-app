@@ -6,7 +6,16 @@ import prisma from "@/lib/prisma";
 
 const IMGBB_API_KEY = process.env.IMGBB_API_KEY;
 
-export async function uploadImage(file: File): Promise<string> {
+export async function uploadImage(file: File): Promise<{
+  deleteUrl: string;
+  height: number;
+  width: number;
+  imageUrl: string;
+  mediumUrl: string;
+  thumbUrl: string;
+  title: string;
+  id: string;
+}> {
   const formData = new FormData();
   formData.append("image", file);
 
@@ -40,5 +49,5 @@ export async function uploadImage(file: File): Promise<string> {
     },
   });
 
-  return result.id;
+  return result;
 }

@@ -139,6 +139,7 @@ export default function RolesPage() {
             name={user?.name}
             roles={user?.UserRoles.map((r) => r.role)}
             profileLink={getProfileLink(user?.id, user?.username)}
+            id={user?.id}
           />
 
           <Card className="my-3">

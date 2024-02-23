@@ -36,6 +36,7 @@ export default async function ProfilePage() {
   return (
     <Container className="gap-8 flex flex-col p-3 max-w-[50rem]">
       <ProfileCard
+        id={session?.user?.id}
         accounts={accounts}
         name={session?.user?.name}
         email={session?.user?.email}
