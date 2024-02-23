@@ -25,6 +25,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import updateProfilePicture from "@/actions/updateProfilePicture";
 import { toast } from "sonner";
+import { Pen } from "lucide-react";
 
 interface SocialMediaHandleProps {
   platform: {
@@ -97,13 +98,16 @@ function ProfilePictureDialog({ image, userId }: ProfilePictureDialogProps) {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="text-center flex justify-center">
+        <div className="text-center flex justify-center relative hover:brightness-125 transition-all">
           <img
             src={image}
             alt="Profile picture"
             className="w-40 h-40 rounded-full border-2 border-cyan-500/40"
             referrerPolicy="no-referrer"
           />
+          <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">
+            <Pen />
+          </p>
         </div>
       </DialogTrigger>
       <DialogContent>
