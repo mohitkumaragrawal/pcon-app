@@ -29,11 +29,9 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ blog, canChange }: BlogCardProps) {
-  const tags = ["event", "announcement", "news"];
-
   return (
     <Card className="px-5 py-5">
-      <div className="text-md font-bold text-cyan-300 mb-2 justify-between flex">
+      <div className="text-md font-bold text-cyan-300 mb-2 justify-between flex flex-col md:flex-row">
         <Link
           href={`/blogs/${blog.id}`}
           className=" hover:underline underline-offset-4 text-xl"
@@ -41,10 +39,10 @@ export default function BlogCard({ blog, canChange }: BlogCardProps) {
           {blog.title}
         </Link>
         {canChange && (
-          <div className="gap-2 flex">
+          <div className="gap-2 flex flex-row-reverse -order-1 md:order-1">
             <BlogDeleteButton blogId={blog.id} />
             <Link href={`/blogs/edit/${blog.id}`}>
-              <Button variant="secondary">
+              <Button variant="outline" className="w-12 h-12 rounded-full">
                 <EditIcon size={16} />
               </Button>
             </Link>

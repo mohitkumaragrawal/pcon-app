@@ -8,12 +8,20 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { TbLetterP } from "react-icons/tb";
 
 const socialMedia = [
-  { name: "github", icon: <FaGithub />, link: "#" },
+  { name: "github", icon: <FaGithub />, link: "https://github.com/pcon-jsr" },
   { name: "codeforces", icon: <SiCodeforces /> },
   { name: "codechef", icon: <SiCodechef /> },
-  { name: "linkedin", icon: <FaLinkedinIn />, link: "#" },
-  { name: "twitter", icon: <FaXTwitter />, link: "#" },
-  { name: "instagram", icon: <FaInstagram />, link: "#" },
+  {
+    name: "linkedin",
+    icon: <FaLinkedinIn />,
+    link: "https://www.linkedin.com/company/pconjsr/mycompany/",
+  },
+  { name: "twitter" },
+  {
+    name: "instagram",
+    icon: <FaInstagram />,
+    link: "https://www.instagram.com/pconjsr",
+  },
   { name: "discord", icon: <FaDiscord /> },
   { name: "pcon", icon: <TbLetterP /> },
 ];

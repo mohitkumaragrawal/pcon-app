@@ -58,14 +58,14 @@ export default async function TeamPage() {
 
   return (
     <Container>
-      <GlitchHeading className="text-2xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
+      <GlitchHeading className="text-4xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
         Our Team
       </GlitchHeading>
 
       {order.map((category) => (
         <div key={category} className="my-8">
           <p
-            className="text-3xl font-bold glitch"
+            className="text-2xl font-bold glitch ml-3"
             style={{
               fontFamily: "monospace",
             }}
