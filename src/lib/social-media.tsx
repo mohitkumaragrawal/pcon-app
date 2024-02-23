@@ -16,7 +16,7 @@ const socialMedia = [
     icon: <FaLinkedinIn />,
     link: "https://www.linkedin.com/company/pconjsr/mycompany/",
   },
-  { name: "twitter" },
+  { name: "twitter", icon: <FaXTwitter /> },
   {
     name: "instagram",
     icon: <FaInstagram />,
