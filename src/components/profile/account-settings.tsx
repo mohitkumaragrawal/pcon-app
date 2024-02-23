@@ -18,7 +18,10 @@ import updateGender from "@/actions/updateGender";
 import { Session } from "next-auth";
 
 const schema = z.object({
-  value: z.string(),
+  value: z
+    .string()
+    .min(1, "Field is required")
+    .regex(/^[a-zA-Z_][a-zA-Z0-9_]*$/, "Invalid value"),
 });
 
 function isEmpty(s: string): boolean {
