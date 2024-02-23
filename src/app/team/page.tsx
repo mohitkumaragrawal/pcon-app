@@ -48,8 +48,8 @@ export default async function TeamPage() {
       grouped["Alumni"] = grouped["Alumni"] || [];
       grouped["Alumni"].push({ ...x, post: "Alumni", order });
     } else if (president) {
-      grouped["President"] = grouped["President"] || [];
-      grouped["President"].push({ ...x, post: "Presient", order });
+      grouped["Core Members"] = grouped["Core Members"] || [];
+      grouped["Core Members"].push({ ...x, post: "Presient", order });
     } else if (!member) {
       grouped["Core Members"] = grouped["Core Members"] || [];
       grouped["Core Members"].push({ ...x, post, order });
@@ -58,7 +58,7 @@ export default async function TeamPage() {
       grouped["Members"].push({ ...x, post: "Member", order });
     }
   }
-  const order = ["President", "Core Members", "Members", "Alumni"];
+  const order = ["Core Members", "Members", "Alumni"];
 
   for (let category in grouped) {
     grouped[category].sort((a, b) => a.order - b.order);
@@ -72,14 +72,22 @@ export default async function TeamPage() {
 
       {order.map((category) => (
         <div key={category} className="my-8">
-          <p
-            className="text-2xl font-bold glitch ml-3"
-            style={{
-              fontFamily: "monospace",
-            }}
-          >
-            {category}
-          </p>
+          <div className="flex gap-3">
+            <div
+              className="text-2xl font-bold glitch ml-3"
+              style={{
+                fontFamily: "monospace",
+              }}
+            >
+              {category}
+            </div>
+            <div
+              className="text-2xl glitch ml-3 opacity-60 scale-80"
+              style={{ fontFamily: "monospace" }}
+            >
+              {grouped[category]?.length}
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-3 mb-10">
             {grouped[category]?.map((user) => (
