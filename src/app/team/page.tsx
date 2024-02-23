@@ -73,7 +73,7 @@ export default async function TeamPage() {
             {category}
           </p>
 
-          <div className="grid md:grid-cols-2 gap-6 mt-3 mb-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-3 mb-10">
             {grouped[category]?.map((user) => (
               <ProfileCard
                 key={user.id}

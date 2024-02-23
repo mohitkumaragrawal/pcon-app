@@ -42,6 +42,7 @@ export default async function ProfilePage() {
         roles={session?.user?.roles}
         image={session?.user?.image}
         profileLink={getProfileLink(session?.user?.id, session?.user?.username)}
+        canEdit={true}
       />
 
       <Tabs defaultValue="blogs" className="max-w-[50rem] w-full mx-auto">

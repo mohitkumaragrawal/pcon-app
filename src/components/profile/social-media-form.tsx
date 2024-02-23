@@ -23,8 +23,17 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 const schema = z.object({
-  type: z.string(),
-  account: z.string(),
+  type: z.enum([
+    "github",
+    "codeforces",
+    "codechef",
+    "linkedin",
+    "twitter",
+    "instagram",
+    "discord",
+    "",
+  ]),
+  account: z.string().url(),
 });
 
 type Schema = z.infer<typeof schema>;

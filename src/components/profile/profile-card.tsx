@@ -30,6 +30,7 @@ export default function ProfileCard({
   email,
   accounts: otherAccounts,
   profileLink,
+  canEdit,
 }: {
   name: string;
   image: string;
@@ -37,6 +38,7 @@ export default function ProfileCard({
   roles: string[];
   accounts: { type: string; handle: string }[];
   profileLink?: string;
+  canEdit?: boolean;
 }) {
   // const isAdmin = hasRole(session, "admin");
   const isAdmin = hasRoleInArray(roles, "admin");
@@ -48,7 +50,7 @@ export default function ProfileCard({
     <Card className="w-full">
       <div className="flex flex-col items-center py-8 relative">
         {isAdmin && (
-          <div className="absolute top-3 right-3 px-4 py-1 rounded border-2">
+          <div className="absolute top-3 right-3 px-4 py-1 rounded-full border-2">
             admin
           </div>
         )}
