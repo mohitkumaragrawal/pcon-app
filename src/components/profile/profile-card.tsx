@@ -102,7 +102,7 @@ function ProfilePictureDialog({ image, userId }: ProfilePictureDialogProps) {
           <img
             src={image}
             alt="Profile picture"
-            className="w-40 h-40 rounded-full border-2 border-cyan-500/40"
+            className="w-40 h-40 rounded-full border-2 border-cyan-500/40 object-cover"
             referrerPolicy="no-referrer"
           />
           <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">
