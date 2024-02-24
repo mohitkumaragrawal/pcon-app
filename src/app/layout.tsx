@@ -36,7 +36,7 @@ export default async function RootLayout({
           <div className="flex flex-col min-h-screen items-stretch">
             <Nav session={session} />
             <div className="w-full">{children}</div>
-            <div className="flex-1" />
+            <div className="flex-1 min-h-[30rem]" />
             <Footer />
           </div>
         </Providers>
