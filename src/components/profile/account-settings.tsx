@@ -33,7 +33,7 @@ function isEmpty(s: string): boolean {
 export default function AccountSettings({ session }: { session: Session }) {
   return (
     <Card>
-      <CardHeader className="font-bold text-xl">Account Settings</CardHeader>
+      <CardHeader className="text-xl font-bold">Account Settings</CardHeader>
       <CardContent className="mt-3">
         <FieldEdit
           defaultValue={session?.user?.username ?? ""}

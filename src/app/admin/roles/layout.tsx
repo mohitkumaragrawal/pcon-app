@@ -12,7 +12,7 @@ export default async function RolesLayout({ children }) {
     return (
       <Container>
         <Card>
-          <CardHeader className="text-4xl text-center">Unauthorized</CardHeader>
+          <CardHeader className="text-center text-4xl">Unauthorized</CardHeader>
         </Card>
       </Container>
     );

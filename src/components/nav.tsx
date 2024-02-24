@@ -31,7 +31,7 @@ function NavLink({
 }) {
   return (
     <Link
-      className="text-lg uppercase font-bold cursor-pointer transition-all nav-link"
+      className="nav-link cursor-pointer text-lg font-bold uppercase transition-all"
       onClick={onClick}
       href={link}
     >
@@ -121,7 +121,7 @@ export default function Nav(props: NavProps) {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="md:hidden pr-3" justify="center">
+      <NavbarContent className="pr-3 md:hidden" justify="center">
         <NavbarBrand>
           <Link href="/">
             <Image
@@ -142,7 +142,7 @@ export default function Nav(props: NavProps) {
         />
       </NavbarContent>
 
-      <NavbarContent className="gap-10 hidden md:flex">
+      <NavbarContent className="hidden gap-10 md:flex">
         <NavbarBrand>
           <Link href="/">
             <Image
@@ -159,11 +159,11 @@ export default function Nav(props: NavProps) {
             <NavLink link={item.link}>{item.name}</NavLink>
           </NavbarItem>
         ))}
-        <NavbarItem className="gap-10 hidden md:flex">
+        <NavbarItem className="hidden gap-10 md:flex">
           <Profile session={props.session} />
         </NavbarItem>
       </NavbarContent>
-      <NavbarMenu className="py-10 overflow-hidden">
+      <NavbarMenu className="overflow-hidden py-10">
         {navItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <NavLink link={item.link} onClick={() => setIsMenuOpen(false)}>

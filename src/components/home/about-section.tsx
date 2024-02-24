@@ -15,23 +15,23 @@ export default function AboutSection() {
     <HomeSection
       className={cn(
         "md:flex-row-reverse",
-        "flex flex-col md:items-center gap-8"
+        "flex flex-col gap-8 md:items-center",
       )}
     >
-      <GlitchHeading className="text-4xl md:hidden mt-10 justify-center flex">
+      <GlitchHeading className="mt-10 flex justify-center text-4xl md:hidden">
         Who are we?
       </GlitchHeading>
-      <div className="flex-1 order-2 md:order-none">
-        <GlitchHeading className="text-5xl mb-6 hidden md:block">
+      <div className="order-2 flex-1 md:order-none">
+        <GlitchHeading className="mb-6 hidden text-5xl md:block">
           Who are we?
         </GlitchHeading>
         <TextGenerateEffect className="text-lg" words={words} />
       </div>
-      <div className="h-full flex-1 bg-grid-small-cyan-500/[0.6] relative flex items-center justify-center p-2">
+      <div className="relative flex h-full flex-1 items-center justify-center p-2 bg-grid-small-cyan-500/[0.6]">
         <Image
           src={img1}
           alt="landing image"
-          className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+          className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-cyan-400/20 transition-all hover:opacity-100"
         />
       </div>
     </HomeSection>

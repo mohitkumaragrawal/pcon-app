@@ -7,10 +7,10 @@ export default function HomeSection(props: {
   return (
     <section
       className={cn(
-        "relative p-5 md:p-20 border-2 rounded-none sm:rounded-lg mt-8 border-slate-700",
-        "bg-slate-600/[0.1] bg-dot-slate-800 backdrop-blur-sm",
+        "relative mt-8 rounded-none border-2 border-slate-700 p-5 sm:rounded-lg md:p-20",
+        "bg-slate-600/[0.1] backdrop-blur-sm bg-dot-slate-800",
         "mx-0 sm:mx-3",
-        props.className
+        props.className,
       )}
     >
       {props.children}

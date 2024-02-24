@@ -23,7 +23,7 @@ export default function SignInPage(props: Props) {
 
   return (
     <>
-      <div className="max-w-xl mx-auto pt-36 px-4">
+      <div className="mx-auto max-w-xl px-4 pt-36">
         <Card className="min-w-64">
           <CardHeader className="px-4 py-4 text-3xl">Sign in</CardHeader>
           <CardContent className="flex justify-center">
@@ -34,7 +34,7 @@ export default function SignInPage(props: Props) {
               }}
               variant="secondary"
               disabled={loading}
-              className="w-full mt-6"
+              className="mt-6 w-full"
             >
               <FcGoogle className="mr-2" />
               Sign in with Google

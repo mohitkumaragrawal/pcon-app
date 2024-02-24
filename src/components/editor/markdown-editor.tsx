@@ -29,14 +29,14 @@ export default function MarkdownEditor(props: MarkdownEditorProps) {
         </Button>
       </div>
       {preview && (
-        <MyMarkdown className="text-lg border-2 rounded-md p-3 backdrop-blur-sm">
+        <MyMarkdown className="rounded-md border-2 p-3 text-lg backdrop-blur-sm">
           {props.value}
         </MyMarkdown>
       )}
       {!preview && (
         <Textarea
           placeholder="Content goes here..."
-          className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
+          className="bg-slate-900/30 px-4 py-4 text-lg backdrop-blur-sm"
           rows={6}
           disabled={props.disabled}
           name={props.name}

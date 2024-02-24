@@ -10,7 +10,7 @@ export default async function AdminAchievement() {
       <GlitchHeading className="text-xl sm:text-4xl">
         Manage Achievements
       </GlitchHeading>
-      <div className="flex flex-row-reverse mb-3">
+      <div className="mb-3 flex flex-row-reverse">
         <Link href="/admin/achievements/create">
           <Button variant="secondary">
             <PlusIcon className="mr-3" />

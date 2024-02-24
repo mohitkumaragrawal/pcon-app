@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 export default function TestLoader() {
   return (
-    <div className="w-full h-screen inset-0 fixed">
+    <div className="fixed inset-0 h-screen w-full">
       <motion.div
-        className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-[70%] absolute scale-[.5]"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[70%] scale-[.5]"
         initial={{
           opacity: 0,
         }}

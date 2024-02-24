@@ -6,7 +6,7 @@ export default function TorchBackground() {
   return (
     <>
       <div
-        className="fixed inset-0 transition-all -z-40"
+        className="fixed inset-0 -z-40 transition-all"
         style={{
           background: `radial-gradient(circle at 100% 0, #1d173eaf 0%, rgba(0,0,20,1) 46%),
                       radial-gradient(circle at 0 0, rgba(18, 57, 61, 0.8) 0%, rgba(0,0,20,1) 46%)`,

@@ -49,17 +49,17 @@ function AnimatedText({ children, className }) {
 
 export default function HeroSection() {
   return (
-    <section className="relative p-5 md:p-20 flex flex-col md:flex-row md:items-center gap-8">
+    <section className="relative flex flex-col gap-8 p-5 md:flex-row md:items-center md:p-20">
       <GlitchHeading className="text-6xl md:mb-10 md:hidden">
         PCON
       </GlitchHeading>
-      <div className="flex-1 order-2 md:order-none">
-        <GlitchHeading className="text-6xl mb-10 hidden md:block">
+      <div className="order-2 flex-1 md:order-none">
+        <GlitchHeading className="mb-10 hidden text-6xl md:block">
           PCON
         </GlitchHeading>
-        <div className="text-xl overflow-visible">
+        <div className="overflow-visible text-xl">
           Unleashing Code Wizards:{" "}
-          <span className="text-cyan-500 font-bold">
+          <span className="font-bold text-cyan-500">
             Programming Club Of NIT Jamshedpur
           </span>{" "}
           - Pioneering excellence in <br />{" "}
@@ -83,7 +83,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="h-full flex-1 bg-grid-small-cyan-500/[0.6] relative flex items-center justify-center p-4 ">
+      <div className="relative flex h-full flex-1 items-center justify-center p-4 bg-grid-small-cyan-500/[0.6] ">
         <Carousel
           opts={{
             align: "start",
@@ -101,35 +101,35 @@ export default function HeroSection() {
               <Image
                 src={img1}
                 alt="landing image"
-                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+                className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-cyan-400/20 transition-all hover:opacity-100"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
                 src={img2}
                 alt="landing image"
-                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+                className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-cyan-400/20 transition-all hover:opacity-100"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
                 src={img3}
                 alt="landing image"
-                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+                className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-cyan-400/20 transition-all hover:opacity-100"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
                 src={img4}
                 alt="landing image"
-                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+                className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-cyan-400/20 transition-all hover:opacity-100"
               />
             </CarouselItem>
             <CarouselItem>
               <Image
                 src={img5}
                 alt="landing image"
-                className="w-full h-full object-cover rounded-xl shadow-lg shadow-cyan-400/20 opacity-90 hover:opacity-100 transition-all"
+                className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-cyan-400/20 transition-all hover:opacity-100"
               />
             </CarouselItem>
           </CarouselContent>

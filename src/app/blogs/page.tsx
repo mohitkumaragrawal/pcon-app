@@ -27,7 +27,7 @@ export default async function Blogs() {
 
   return (
     <Container>
-      <div className="flex justify-between items-center mb-6 sm:mb-10 sm:mt-16">
+      <div className="mb-6 flex items-center justify-between sm:mb-10 sm:mt-16">
         <GlitchHeading className="text-2xl sm:text-5xl">Blogs</GlitchHeading>
         <div className="flex gap-3 self-start">
           {session && (

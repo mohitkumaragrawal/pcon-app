@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body>
         <Providers>
           <TorchBackground />
-          <div className="flex flex-col min-h-screen items-stretch">
+          <div className="flex min-h-screen flex-col items-stretch">
             <Nav session={session} />
             <div className="w-full">{children}</div>
             <div className="flex-1" />

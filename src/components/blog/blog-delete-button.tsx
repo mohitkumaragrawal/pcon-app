@@ -29,7 +29,7 @@ export default function BlogDeleteButton({ blogId }: Props) {
 
   return (
     <DeleteConfirm onConfirm={handleDelete}>
-      <Button variant="outline" className="rounded-full w-12 h-12">
+      <Button variant="outline" className="h-12 w-12 rounded-full">
         <Trash size={16} />
       </Button>
     </DeleteConfirm>

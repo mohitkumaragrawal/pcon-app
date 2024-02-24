@@ -16,7 +16,7 @@ export default async function GuardedLayout({
 
   if (!session) {
     return redirect(
-      `/auth/signin?callbackUrl=${encodeURIComponent(header_url)}`
+      `/auth/signin?callbackUrl=${encodeURIComponent(header_url)}`,
     );
   }
 

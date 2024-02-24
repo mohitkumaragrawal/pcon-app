@@ -20,15 +20,15 @@ export default function SocialMedia({ accounts: initialAccounts }: Props) {
 
   return (
     <Card>
-      <CardHeader className="font-bold text-xl">
+      <CardHeader className="text-xl font-bold">
         Social Media Accounts
       </CardHeader>
       <CardContent>
-        <div className="mt-6 flex flex-col gap-3 my-8">
+        <div className="my-8 mt-6 flex flex-col gap-3">
           {accounts.map((val) => (
             <div
               key={val.type}
-              className="px-4 py-4 rounded-sm border-2 flex justify-between"
+              className="flex justify-between rounded-sm border-2 px-4 py-4"
             >
               <div className="flex items-center gap-3">
                 {socialMedia.find((sm) => sm.name === val.type).icon}
@@ -42,7 +42,7 @@ export default function SocialMedia({ accounts: initialAccounts }: Props) {
                     loading: "Removing...",
                     success: (d) => {
                       setAccounts(
-                        accounts.filter((ac) => ac.type !== val.type)
+                        accounts.filter((ac) => ac.type !== val.type),
                       );
                       return "Successfully removed account";
                     },

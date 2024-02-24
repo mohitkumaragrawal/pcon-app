@@ -24,29 +24,29 @@ export default async function Events() {
 
   return (
     <Container>
-      <GlitchHeading className="text-2xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
+      <GlitchHeading className="mb-6 text-2xl sm:mb-10 sm:mt-16 sm:text-5xl">
         Events
       </GlitchHeading>
 
-      <div className="gap-10 grid grid-cols-1 md:grid-cols-2 pb-8">
+      <div className="grid grid-cols-1 gap-10 pb-8 md:grid-cols-2">
         {upcomingEvents.map((eve) => (
           <EventCard event={eve} key={eve.id} />
         ))}
       </div>
       {upcomingEvents.length === 0 && (
-        <p className="text-gray-500 text-xl">No more events</p>
+        <p className="text-xl text-gray-500">No more events</p>
       )}
 
-      <GlitchHeading className="text-2xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
+      <GlitchHeading className="mb-6 text-2xl sm:mb-10 sm:mt-16 sm:text-5xl">
         Past Events
       </GlitchHeading>
-      <div className="gap-10 grid grid-cols-1 md:grid-cols-2 pb-8">
+      <div className="grid grid-cols-1 gap-10 pb-8 md:grid-cols-2">
         {pastEvents.map((eve) => (
           <EventCard event={eve} key={eve.id} />
         ))}
       </div>
       {pastEvents.length === 0 && (
-        <p className="text-gray-500 text-xl">No more events</p>
+        <p className="text-xl text-gray-500">No more events</p>
       )}
     </Container>
   );

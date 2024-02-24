@@ -34,7 +34,7 @@ export default async function ProfilePage() {
   });
 
   return (
-    <Container className="gap-8 flex flex-col p-3 max-w-[50rem]">
+    <Container className="flex max-w-[50rem] flex-col gap-8 p-3">
       <ProfileCard
         id={session?.user?.id}
         accounts={accounts}
@@ -46,7 +46,7 @@ export default async function ProfilePage() {
         canEdit={true}
       />
 
-      <Tabs defaultValue="blogs" className="max-w-[50rem] w-full mx-auto">
+      <Tabs defaultValue="blogs" className="mx-auto w-full max-w-[50rem]">
         <TabsList>
           <TabsTrigger value="blogs">Blogs</TabsTrigger>
           <TabsTrigger value="settings">Account Settings</TabsTrigger>
@@ -54,16 +54,16 @@ export default async function ProfilePage() {
         </TabsList>
         <TabsContent value="blogs">
           <Card>
-            <CardHeader className="font-bold text-xl">Blogs</CardHeader>
+            <CardHeader className="text-xl font-bold">Blogs</CardHeader>
             <CardContent className="mt-3">
               {blogs.map((blog) => (
                 <div
-                  className="px-3 py-3 border-2 rounded my-2 flex flex-col gap-2"
+                  className="my-2 flex flex-col gap-2 rounded border-2 px-3 py-3"
                   key={blog.id}
                 >
                   <Link
                     href={`/blogs/${blog.id}`}
-                    className="text-cyan-300 underline underline-offset-4 text-lg"
+                    className="text-lg text-cyan-300 underline underline-offset-4"
                   >
                     {blog.title}
                   </Link>

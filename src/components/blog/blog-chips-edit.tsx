@@ -19,13 +19,13 @@ export default function BlogChipsEdit({
 
   let chips = chipsProp ?? [];
   const autocompleteChips = allowedChips.filter(
-    (chip) => !chips?.includes(chip)
+    (chip) => !chips?.includes(chip),
   );
 
   return (
-    <div className="flex gap-2 items-center flex-wrap">
+    <div className="flex flex-wrap items-center gap-2">
       {chips?.length === 0 && (
-        <p className="text-muted-foreground text-sm">No tags</p>
+        <p className="text-sm text-muted-foreground">No tags</p>
       )}
       <div className="flex space-x-2">
         {chips?.map((chip) => (

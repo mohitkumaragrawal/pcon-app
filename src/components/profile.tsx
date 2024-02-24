@@ -61,15 +61,15 @@ export default function Profile({ session }: Props) {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="p-5 flex gap-4">
+        <DropdownMenuLabel className="flex gap-4 p-5">
           <img
             src={session?.user?.image ?? ""}
             alt="profile imge"
-            className="w-10 h-10 rounded-full overflow-hidden object-cover"
+            className="h-10 w-10 overflow-hidden rounded-full object-cover"
           />
           <div>
             <p>{session.user.name}</p>
-            <p className="opacity-60 font-normal">{session.user.email}</p>
+            <p className="font-normal opacity-60">{session.user.email}</p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

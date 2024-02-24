@@ -23,14 +23,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   return (
     <>
-      <div className="fixed inset-0 backdrop-blur-md -z-10" />
+      <div className="fixed inset-0 -z-10 backdrop-blur-md" />
       <Container>
-        <Card className="text-center font-bold text-3xl mb-4 tracking-tight py-3">
+        <Card className="mb-4 py-3 text-center text-3xl font-bold tracking-tight">
           {blog.title}
         </Card>
-        <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex flex-wrap justify-center gap-3">
           {blog.BlogTag.map(({ tag }) => (
-            <div className="border-2 px-3 py-1 rounded-full" key={tag}>
+            <div className="rounded-full border-2 px-3 py-1" key={tag}>
               #{tag}
             </div>
           ))}

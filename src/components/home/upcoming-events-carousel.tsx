@@ -8,7 +8,7 @@ export default function UpcomingEventsCarousel({ events }) {
   return (
     <>
       {events.length === 0 ? (
-        <p className="text-center text-2xl text-muted-foreground mt-5">
+        <p className="mt-5 text-center text-2xl text-muted-foreground">
           No upcoming events
         </p>
       ) : (
@@ -25,7 +25,7 @@ export default function UpcomingEventsCarousel({ events }) {
           <CarouselContent>
             {events.map((eve) => (
               <CarouselItem
-                className="md:basis-1/2 h-[32rem] md:h-64"
+                className="h-[32rem] md:h-64 md:basis-1/2"
                 key={eve.id}
               >
                 <EventCard event={eve} />

@@ -46,7 +46,7 @@ interface FieldEditProps {
         value?: string;
       },
       "value"
-    >
+    >,
   ) => React.ReactNode;
   onSubmit: (value: string) => Promise<void>;
 }
@@ -91,13 +91,13 @@ export default function FieldEdit(props: FieldEditProps) {
       <Form {...form}>
         <form
           className={cn(
-            "px-3 py-3 bg-slate-800/30 rounded-lg my-3 border-2 relative",
-            loading ? "opacity-50" : ""
+            "relative my-3 rounded-lg border-2 bg-slate-800/30 px-3 py-3",
+            loading ? "opacity-50" : "",
           )}
           onSubmit={form.handleSubmit(handleSubmit)}
         >
           {loading && (
-            <Spinner className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute" />
+            <Spinner className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
           )}
           <FormField
             name="value"
@@ -126,9 +126,9 @@ export default function FieldEdit(props: FieldEditProps) {
   }
 
   return (
-    <div className="my-3 flex justify-between items-center">
+    <div className="my-3 flex items-center justify-between">
       <div className="flex-1">
-        <p className="font-bold text-lg">{props.label}</p>
+        <p className="text-lg font-bold">{props.label}</p>
         {value == "" ? (
           <p className="text-muted-foreground">None</p>
         ) : (

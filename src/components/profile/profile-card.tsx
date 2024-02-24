@@ -39,7 +39,7 @@ function SocialMediaHandle(props: SocialMediaHandleProps) {
     <Link
       href={props.handle}
       target="_blank"
-      className="flex gap-3 items-center py-4 px-4 rounded-full border-2 transition-all hover:bg-slate-900 cursor-pointer"
+      className="flex cursor-pointer items-center gap-3 rounded-full border-2 px-4 py-4 transition-all hover:bg-slate-900"
     >
       <span className="">{props.platform.icon}</span>
     </Link>
@@ -61,7 +61,7 @@ const imageSchema = z.object({
     .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
     .refine(
       (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
+      "Only .jpg, .jpeg, .png and .webp formats are supported.",
     ),
 });
 
@@ -98,11 +98,11 @@ function ProfilePictureDialog({ image, userId }: ProfilePictureDialogProps) {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="text-center flex justify-center relative hover:brightness-125 transition-all">
+        <div className="relative flex justify-center text-center transition-all hover:brightness-125">
           <img
             src={image}
             alt="Profile picture"
-            className="w-40 h-40 rounded-full border-2 border-cyan-500/40 object-cover"
+            className="h-40 w-40 rounded-full border-2 border-cyan-500/40 object-cover"
             referrerPolicy="no-referrer"
           />
           <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-bold">
@@ -111,7 +111,7 @@ function ProfilePictureDialog({ image, userId }: ProfilePictureDialogProps) {
         </div>
       </DialogTrigger>
       <DialogContent>
-        <h2 className="font-bold text-xl">Edit Profile Picture</h2>
+        <h2 className="text-xl font-bold">Edit Profile Picture</h2>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
@@ -178,10 +178,10 @@ export default function ProfileCard({
 
   return (
     <Card className="w-full">
-      <div className="flex flex-col items-center py-8 relative">
-        <div className="absolute top-2 right-3 flex gap-2 text-sm">
+      <div className="relative flex flex-col items-center py-8">
+        <div className="absolute right-3 top-2 flex gap-2 text-sm">
           {chips.map((chip) => (
-            <div key={chip} className="px-2 py-0 rounded-full border-2">
+            <div key={chip} className="rounded-full border-2 px-2 py-0">
               {chip}
             </div>
           ))}
@@ -190,19 +190,19 @@ export default function ProfileCard({
         {canEdit ? (
           <ProfilePictureDialog image={image} userId={id} />
         ) : (
-          <div className="text-center flex justify-center">
+          <div className="flex justify-center text-center">
             <img
               src={image}
               alt="Profile picture"
-              className="w-40 h-40 rounded-full border-2 border-cyan-300/40 object-cover"
+              className="h-40 w-40 rounded-full border-2 border-cyan-300/40 object-cover"
               referrerPolicy="no-referrer"
             />
           </div>
         )}
-        <p className="text-2xl font-bold mt-4">{name}</p>
+        <p className="mt-4 text-2xl font-bold">{name}</p>
         <p className="opacity-80">{email}</p>
 
-        <div className="mt-4 flex gap-2 px-3 flex-wrap justify-center">
+        <div className="mt-4 flex flex-wrap justify-center gap-2 px-3">
           {accounts.map((acc) => {
             const p = socialMedia.find((x) => x.name === acc.type);
             return (

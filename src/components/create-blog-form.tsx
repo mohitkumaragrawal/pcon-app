@@ -89,7 +89,7 @@ export default function CreateBlogForm({
         loading: "Creating blog...",
         success: "Blog created successfully.",
         error: "Error creating blog. Please try again.",
-      }
+      },
     );
 
     try {
@@ -103,7 +103,7 @@ export default function CreateBlogForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-8 mt-8"
+        className="mt-8 flex flex-col gap-8"
       >
         <FormField
           control={form.control}
@@ -114,7 +114,7 @@ export default function CreateBlogForm({
               <FormControl>
                 <Textarea
                   placeholder="Title"
-                  className="text-lg py-4 px-4 bg-slate-900/30 backdrop-blur-sm"
+                  className="bg-slate-900/30 px-4 py-4 text-lg backdrop-blur-sm"
                   rows={1}
                   {...field}
                 />
@@ -128,7 +128,7 @@ export default function CreateBlogForm({
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg flex justify-between">
+              <FormLabel className="flex justify-between text-lg">
                 Content
               </FormLabel>
               <FormControl>
@@ -147,7 +147,7 @@ export default function CreateBlogForm({
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-lg flex justify-between">
+              <FormLabel className="flex justify-between text-lg">
                 Tags
               </FormLabel>
               <BlogChipsEdit

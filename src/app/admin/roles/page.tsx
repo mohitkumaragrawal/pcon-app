@@ -121,7 +121,7 @@ export default function RolesPage() {
                 </FormItem>
               )}
             />
-            <div className="flex flex-row-reverse my-3">
+            <div className="my-3 flex flex-row-reverse">
               <Button variant="secondary" type="submit" disabled={loading}>
                 Search
               </Button>
@@ -143,7 +143,7 @@ export default function RolesPage() {
           />
 
           <Card className="my-3">
-            <CardHeader className="font-bold text-xl">Add Role</CardHeader>
+            <CardHeader className="text-xl font-bold">Add Role</CardHeader>
             <CardContent>
               <Form {...roleForm}>
                 <form
@@ -176,7 +176,7 @@ export default function RolesPage() {
                       </FormItem>
                     )}
                   />
-                  <div className="flex flex-row-reverse my-3">
+                  <div className="my-3 flex flex-row-reverse">
                     <Button variant="secondary">Add Role</Button>
                   </div>
                 </form>
@@ -185,13 +185,13 @@ export default function RolesPage() {
           </Card>
 
           <Card className="my-3">
-            <CardHeader className="font-bold text-xl">Roles</CardHeader>
+            <CardHeader className="text-xl font-bold">Roles</CardHeader>
 
             <CardContent>
               <div>
                 {user?.UserRoles.map((r) => (
                   <div
-                    className="py-4 px-4 flex border-2 justify-between items-center my-3 rounded"
+                    className="my-3 flex items-center justify-between rounded border-2 px-4 py-4"
                     key={r.role}
                   >
                     <p>{r.role}</p>
@@ -201,7 +201,7 @@ export default function RolesPage() {
                           loading: "Removing role",
                           success: () => {
                             const newRoles = user?.UserRoles.filter(
-                              (s) => s.role !== r.role
+                              (s) => s.role !== r.role,
                             );
                             const newUser = { ...user, UserRoles: newRoles };
                             setUser(newUser);

@@ -25,11 +25,11 @@ export default async function UpcomingEvents() {
 
   return (
     <HomeSection>
-      <GlitchHeading className="text-4xl sm:text-5xl mt-5 justify-center flex md:block">
+      <GlitchHeading className="mt-5 flex justify-center text-4xl sm:text-5xl md:block">
         Upcoming Events
       </GlitchHeading>
       <UpcomingEventsCarousel events={upcomingEvents} />
-      <div className="flex flex-row-reverse mt-10">
+      <div className="mt-10 flex flex-row-reverse">
         <Link href="/events">
           <Button variant="secondary">Read More</Button>
         </Link>

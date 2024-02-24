@@ -66,7 +66,7 @@ export default async function TeamPage() {
 
   return (
     <Container>
-      <GlitchHeading className="text-4xl sm:text-5xl mb-6 sm:mb-10 sm:mt-16">
+      <GlitchHeading className="mb-6 text-4xl sm:mb-10 sm:mt-16 sm:text-5xl">
         Our Team
       </GlitchHeading>
 
@@ -74,7 +74,7 @@ export default async function TeamPage() {
         <div key={category} className="my-8">
           <div className="flex gap-3">
             <div
-              className="text-2xl font-bold glitch ml-3"
+              className="glitch ml-3 text-2xl font-bold"
               style={{
                 fontFamily: "monospace",
               }}
@@ -82,14 +82,14 @@ export default async function TeamPage() {
               {category}
             </div>
             <div
-              className="text-2xl glitch ml-3 opacity-60 scale-80"
+              className="glitch ml-3 scale-80 text-2xl opacity-60"
               style={{ fontFamily: "monospace" }}
             >
               {grouped[category]?.length}
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-3 mb-10">
+          <div className="mb-10 mt-3 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {grouped[category]?.map((user) => (
               <ProfileCard
                 key={user.id}

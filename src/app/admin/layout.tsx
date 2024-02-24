@@ -12,7 +12,7 @@ export default async function AdminLayout({ children }) {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/30 -z-10"></div>
+      <div className="fixed inset-0 -z-10 bg-black/30"></div>
       {children}
     </>
   );

@@ -49,8 +49,8 @@ export default function ImageInput(props: ImageInputProps) {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         className={cn(
-          "h-[40vw] max-h-[60vh] border mx-auto rounded my-4 bg-slate-700/20 grid place-content-center relative",
-          isDragOver ? "bg-slate-700/50" : ""
+          "relative mx-auto my-4 grid h-[40vw] max-h-[60vh] place-content-center rounded border bg-slate-700/20",
+          isDragOver ? "bg-slate-700/50" : "",
         )}
       >
         {props.file && (
@@ -67,7 +67,7 @@ export default function ImageInput(props: ImageInputProps) {
           <img
             ref={imgRef}
             alt="Preview Image"
-            className="absolute bg-black bottom-0 top-0 h-full object-cover left-1/2 -translate-x-1/2"
+            className="absolute bottom-0 left-1/2 top-0 h-full -translate-x-1/2 bg-black object-cover"
           />
         )}
         {!props.file && (

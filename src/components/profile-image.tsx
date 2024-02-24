@@ -3,7 +3,7 @@ export default function ProfileImage({ imageUrl }: { imageUrl: string }) {
     <img
       src={imageUrl}
       alt="profile imge"
-      className="w-10 h-10 rounded-full overflow-hidden object-cover"
+      className="h-10 w-10 overflow-hidden rounded-full object-cover"
       referrerPolicy="no-referrer"
     />
   );

@@ -76,7 +76,7 @@ export default function SocialMediaForm(props: Props) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="flex gap-3 flex-col"
+        className="flex flex-col gap-3"
       >
         <FormField
           control={form.control}
@@ -105,7 +105,7 @@ export default function SocialMediaForm(props: Props) {
                             <p className="capitalize">{sm.name}</p>
                           </div>
                         </SelectItem>
-                      )
+                      ),
                     )}
                   </SelectContent>
                 </Select>

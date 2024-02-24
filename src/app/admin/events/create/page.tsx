@@ -5,7 +5,7 @@ import GlitchHeading from "@/components/glitch-heading";
 export default function AchievementsCreatePage() {
   return (
     <Container>
-      <GlitchHeading className="text-xl sm:text-4xl mb-6 sm:mb-10">
+      <GlitchHeading className="mb-6 text-xl sm:mb-10 sm:text-4xl">
         Create Event
       </GlitchHeading>
       <EventForm />

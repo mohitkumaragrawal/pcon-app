@@ -17,18 +17,18 @@ interface AchievementCardProps {
 
 export default function AchievementCard({ achievement }: AchievementCardProps) {
   return (
-    <div className="border-2 flex flex-col sm:flex-row bg-slate-800/30 bg-grid-small-cyan-600/[0.8] bg-blend-multiply gap-2">
+    <div className="flex flex-col gap-2 border-2 bg-slate-800/30 bg-blend-multiply bg-grid-small-cyan-600/[0.8] sm:flex-row">
       {/* // <Card className="flex flex-col sm:flex-row"> */}
-      <div className="h-full relative flex items-center justify-center p-2 flex-1">
+      <div className="relative flex h-full flex-1 items-center justify-center p-2">
         <img
           src={achievement.poster.imageUrl}
           alt="achievement image"
-          className="w-full h-full object-cover shadow-lg rounded-xl shadow-slate-400/20 opacity-90 hover:opacity-100 transition-all"
+          className="h-full w-full rounded-xl object-cover opacity-90 shadow-lg shadow-slate-400/20 transition-all hover:opacity-100"
         />
       </div>
 
-      <div className="bg-slate-900/20 flex-1 flex flex-col justify-between ml-4 sm:ml-0">
-        <p className="font-bold text-xl mt-4">{achievement.title}</p>
+      <div className="ml-4 flex flex-1 flex-col justify-between bg-slate-900/20 sm:ml-0">
+        <p className="mt-4 text-xl font-bold">{achievement.title}</p>
 
         <Link href={`/blogs/${achievement.blogId}`}>
           <Button variant="outline" className="mb-4 mr-4 mt-4">
