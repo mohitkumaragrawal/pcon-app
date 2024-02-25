@@ -14,7 +14,7 @@ const socialMedia = [
   {
     name: "linkedin",
     icon: <FaLinkedinIn />,
-    link: "https://www.linkedin.com/company/pconjsr/mycompany/",
+    link: "https://www.linkedin.com/in/programming-club-of-nit-jamshedpur/",
   },
   { name: "twitter", icon: <FaXTwitter /> },
   {
