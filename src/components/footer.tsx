@@ -8,6 +8,8 @@ import Link from "next/link";
 
 import { Fragment } from "react";
 import { Button } from "./ui/button";
+import { FaGithub } from "react-icons/fa";
+import { VscReport } from "react-icons/vsc";
 
 export default function Footer() {
   return (
@@ -22,12 +24,24 @@ export default function Footer() {
         <p className="mt-2 text-center text-2xl font-semibold">
           Programming Club of NIT Jamshedpur
         </p>
-        <div className="flex flex-row gap-3 justify-center">
-          <Link href="https://github.com/mohitkumaragrawal/pcon-app">
-            <Button variant="link">Repository</Button>
+        <div className="flex flex-row justify-center gap-6">
+          <Link
+            href="https://github.com/mohitkumaragrawal/pcon-app"
+            className="flex items-center gap-2"
+          >
+            <FaGithub />
+            <Button variant="link" className="m-0 p-0">
+              Repository
+            </Button>
           </Link>
-          <Link href="https://github.com/mohitkumaragrawal/pcon-app/issues">
-            <Button variant="link">Report Issue</Button>
+          <Link
+            href="https://github.com/mohitkumaragrawal/pcon-app/issues"
+            className="flex items-center gap-2"
+          >
+            <VscReport />
+            <Button variant="link" className="m-0 p-0">
+              Report Issue
+            </Button>
           </Link>
         </div>
       </div>

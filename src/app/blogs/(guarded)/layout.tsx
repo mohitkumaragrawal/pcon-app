@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
 import { headers } from "next/headers";
+import { hasRole } from "@/lib/has-role";
 
 export default async function GuardedLayout({
   children,
@@ -14,7 +15,7 @@ export default async function GuardedLayout({
   const headersList = headers();
   const header_url = headersList.get("x-url") || "/";
 
-  if (!session) {
+  if (!hasRole(session, "admin")) {
     return redirect(
       `/auth/signin?callbackUrl=${encodeURIComponent(header_url)}`,
     );

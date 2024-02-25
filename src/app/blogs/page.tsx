@@ -30,7 +30,7 @@ export default async function Blogs() {
       <div className="mb-6 flex items-center justify-between sm:mb-10 sm:mt-16">
         <GlitchHeading className="text-2xl sm:text-5xl">Blogs</GlitchHeading>
         <div className="flex gap-3 self-start">
-          {session && (
+          {isAdmin && (
             <Link href="/blogs/create">
               <Button variant="secondary">
                 <Plus size={24} className="md:mr-3" />
