@@ -246,7 +246,19 @@
 }
 
 .markdown ul {
-  @apply list-disc list-inside;
+  @apply list-disc ml-5;
+}
+
+.markdown img {
+  @apply rounded-lg shadow-md shadow-cyan-900 block mx-auto my-8;
+}
+
+.markdown li {
+  @apply my-5 text-lg ml-3;
+}
+
+.markdown ol {
+  @apply list-decimal ml-5;
 }
 
 /* Scrollbar Track */
