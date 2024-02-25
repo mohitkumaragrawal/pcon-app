@@ -17,7 +17,7 @@ export default async function RecentActions() {
   });
 
   return (
-    <HomeSection>
+    <HomeSection className="px-0 md:px-20">
       <GlitchHeading className="mt-5 flex justify-center text-4xl sm:text-5xl md:block">
         Recent Actions
       </GlitchHeading>
@@ -31,7 +31,7 @@ export default async function RecentActions() {
             profileImage: b.author.image,
             blogId: b.id,
           }))}
-          speed="normal"
+          speed="fast"
         />
         <div className="mt-4 flex flex-row-reverse">
           <Link href="/blogs">
