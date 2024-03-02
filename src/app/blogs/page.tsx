@@ -21,6 +21,9 @@ export default async function Blogs() {
       BlogTag: true,
     },
     take: 20,
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   const isAdmin = hasRole(session, "admin");
