@@ -55,7 +55,7 @@ export default function ImageInput(props: ImageInputProps) {
       >
         {props.file && (
           <Button
-            className="absolute right-3 top-3"
+            className="absolute right-3 top-3 z-10"
             variant="destructive"
             type="button"
             onClick={(e) => props.onFileChange(null)}
@@ -67,7 +67,7 @@ export default function ImageInput(props: ImageInputProps) {
           <img
             ref={imgRef}
             alt="Preview Image"
-            className="absolute bottom-0 left-1/2 top-0 h-full -translate-x-1/2 bg-black object-cover"
+            className="absolute bottom-0 left-1/2 top-0 h-full w-full -translate-x-1/2 object-contain bg-grid-ring"
           />
         )}
         {!props.file && (
