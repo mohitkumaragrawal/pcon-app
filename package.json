@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prisma:migrate": "prisma migrate dev",
     "prisma:gen": "prisma generate",
+    "prisma:push": "prisma db push",
     "dev:turbo": "next dev --turbo",
     "postinstall": "prisma generate"
   },
