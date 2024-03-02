@@ -11,7 +11,6 @@ export default async function addRoleToUser(userId: string, role: string) {
   if (!hasRole(session, "pcon:Owner")) {
     throw new Error("Unauthorized");
   }
-
   await prisma.userRoles.create({
     data: {
       role,

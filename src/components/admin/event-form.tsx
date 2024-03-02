@@ -20,7 +20,6 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Spinner } from "@nextui-org/react";
 
-import checkBlogId from "@/actions/checkBlogId";
 import actionCreateEvent from "@/actions/createEvent";
 import DatePicker from "../date-picker";
 import { useRouter } from "next/navigation";
@@ -104,7 +103,7 @@ export default function EventForm() {
       await promise;
 
       router.push("/admin/events");
-    } catch (e) {}
+    } catch (e) { }
 
     form.reset();
     setLoading(false);
