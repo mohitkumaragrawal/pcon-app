@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import getProfileLink from "@/lib/get-profile-link";
 import prisma from "@/lib/prisma";
+import { Metadata } from "next";
 import Link from "next/link";
 
 interface BlogPageProps {
@@ -36,6 +37,21 @@ function formatDuration(duration: number): string {
   }
 }
 
+export async function generateMetadata({
+  params,
+}: BlogPageProps): Promise<Metadata> {
+  const blog = await prisma.$queryRaw<{ title: string; content: string }[]>`
+    SELECT title, SUBSTRING(content, 0, 300) as content FROM "Blog" WHERE id = ${params.id};
+  `;
+  if (!blog || blog.length === 0) {
+    throw new Error("Blog not found");
+  }
+  return {
+    title: blog[0].title,
+    description: blog[0].content,
+  };
+}
+
 export default async function BlogPage({ params }: BlogPageProps) {
   const { id } = params;
 
@@ -56,7 +72,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <div className="fixed inset-0 -z-10 backdrop-blur-md" />
       <Container>
         <Card className="mb-4 py-3 text-center text-3xl font-bold tracking-tight">
-          {blog.title}
+          <h1>{blog.title}</h1>
         </Card>
         <div className="flex flex-wrap justify-center gap-3">
           {blog.BlogTag.map(({ tag }) => (
@@ -67,7 +83,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </div>
 
         <div className="flex flex-row-reverse items-center">
-          <div className="my-4 flex items-center gap-3 border-2 px-4 py-2 rounded-lg">
+          <div className="my-4 flex items-center gap-3 rounded-lg border-2 px-4 py-2">
             <ProfileImage imageUrl={blog.author.image} />
             <div>
               <Link href={getProfileLink(blog.author.id, blog.author.username)}>

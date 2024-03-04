@@ -1,7 +1,6 @@
 import Container from "@/components/container";
 import EventCard from "@/components/event/event-card";
 import GlitchHeading from "@/components/glitch-heading";
-import { Card } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
 
 export default async function Events() {
