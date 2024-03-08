@@ -9,6 +9,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Footer from "@/components/footer";
 
+import { Analytics } from "@vercel/analytics/react";
+
 export const metadata: Metadata = {
   title: "PCON: Programming Club Of NIT Jamshedpur",
   description:
@@ -41,6 +43,7 @@ export default async function RootLayout({
           </div>
         </Providers>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
