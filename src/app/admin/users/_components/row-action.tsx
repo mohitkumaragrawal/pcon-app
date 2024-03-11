@@ -62,9 +62,6 @@ export function RowAction(props: RowActionProps) {
   const [roles, setRoles] = React.useState<string[]>(props.roles);
 
   const [roleEditOpen, setRoleEditOpen] = React.useState(false);
-  const [banOpen, setBanOpen] = React.useState(false);
-  const [deleteOpen, setDeleteOpen] = React.useState(false);
-  const [unbanOpen, setUnbanOpen] = React.useState(false);
 
   React.useEffect(() => {
     setRoles(props.roles);
@@ -106,28 +103,6 @@ export function RowAction(props: RowActionProps) {
 
           <DropdownMenuItem onClick={() => setRoleEditOpen(true)}>
             Edit Roles
-          </DropdownMenuItem>
-
-          {props.isBanned ? (
-            <DropdownMenuItem
-              onClick={() => setUnbanOpen(true)}
-              className="text-green-500"
-            >
-              Unban User
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem
-              onClick={() => setBanOpen(true)}
-              className="text-red-500"
-            >
-              Ban User
-            </DropdownMenuItem>
-          )}
-          <DropdownMenuItem
-            onClick={() => setDeleteOpen(true)}
-            className="text-red-500"
-          >
-            Delete User
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -203,24 +178,6 @@ export function RowAction(props: RowActionProps) {
           </Form>
         </DialogContent>
       </Dialog>
-
-      <ConfirmDialog
-        open={banOpen}
-        onOpenChange={setBanOpen}
-        onConfirm={props.onBanUser}
-      />
-
-      <ConfirmDialog
-        open={deleteOpen}
-        onOpenChange={setDeleteOpen}
-        onConfirm={props.onDeleteUser}
-      />
-
-      <ConfirmDialog
-        open={unbanOpen}
-        onOpenChange={setUnbanOpen}
-        onConfirm={props.onUnbanUser}
-      />
     </>
   );
 }
