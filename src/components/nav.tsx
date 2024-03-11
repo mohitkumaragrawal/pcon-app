@@ -69,8 +69,8 @@ const adminMenuItems = [
     link: "/admin",
   },
   {
-    name: "Roles",
-    link: "/admin/roles",
+    name: "Users",
+    link: "/admin/users",
   },
   {
     name: "Manage Achievements",
